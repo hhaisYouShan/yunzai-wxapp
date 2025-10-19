@@ -6,8 +6,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Discover from "./pages/Discover";
 import Courses from "./pages/Courses";
+import CourseDetail from "./pages/CourseDetail";
+import TeacherDetail from "./pages/TeacherDetail";
+import NewsDetail from "./pages/NewsDetail";
 import Profile from "./pages/Profile";
 import Alumni from "./pages/Alumni";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import { BottomNav } from "./components/BottomNav";
 
@@ -24,8 +28,12 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:id" element={<CourseDetail />} />
+            <Route path="/teachers/:id" element={<TeacherDetail />} />
+            <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/alumni" element={<Alumni />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/auth" element={<Auth />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

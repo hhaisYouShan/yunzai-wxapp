@@ -16,7 +16,7 @@ interface CourseCardProps {
 
 export const CourseCard = ({ course }: CourseCardProps) => {
   return (
-    <Link to={`/course/${course.id}`}>
+    <Link to={`/courses/${course.id}`}>
       <Card className="overflow-hidden hover:shadow-md transition-shadow">
         <div className="flex gap-3">
           <div className="relative w-32 h-24 flex-shrink-0">

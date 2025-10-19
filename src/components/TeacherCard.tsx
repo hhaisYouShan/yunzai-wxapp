@@ -14,7 +14,7 @@ interface TeacherCardProps {
 
 export const TeacherCard = ({ teacher }: TeacherCardProps) => {
   return (
-    <Link to={`/teacher/${teacher.id}`}>
+    <Link to={`/teachers/${teacher.id}`}>
       <Card className="overflow-hidden hover:shadow-md transition-shadow">
         <img
           src={teacher.image}

@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { ChevronRight, ShoppingBag, Star, Ticket, Phone, MessageSquare, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -19,15 +20,22 @@ const Profile = () => {
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
       <div className="bg-gradient-to-br from-primary to-primary-dark text-primary-foreground px-4 pt-8 pb-12">
-        <div className="flex items-center gap-4">
-          <Avatar className="w-16 h-16 border-2 border-primary-foreground">
-            <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" />
-            <AvatarFallback>小山哥</AvatarFallback>
-          </Avatar>
-          <div>
-            <h2 className="text-xl font-bold">小山哥</h2>
-            <p className="text-sm opacity-90">欢迎来到国研在线</p>
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <Avatar className="w-16 h-16 border-2 border-primary-foreground">
+              <AvatarImage src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" />
+              <AvatarFallback>小山哥</AvatarFallback>
+            </Avatar>
+            <div>
+              <h2 className="text-xl font-bold">小山哥</h2>
+              <p className="text-sm opacity-90">欢迎来到国研在线</p>
+            </div>
           </div>
+          <Link to="/auth">
+            <Button variant="outline" size="sm" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+              登录
+            </Button>
+          </Link>
         </div>
       </div>
 

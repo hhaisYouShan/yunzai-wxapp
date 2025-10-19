@@ -159,15 +159,86 @@ const Alumni = () => {
             size="lg"
             onClick={() => setShowForm(!showForm)}
           >
-            立即申请
+            {showForm ? "收起表单" : "立即申请"}
           </Button>
           {showForm && (
-            <div className="mt-4 p-4 bg-card rounded-lg border border-border">
-              <p className="text-sm text-muted-foreground text-center">
-                申请功能需要后台审批系统支持<br/>
-                请联系管理员开通权限
+            <form className="mt-4 space-y-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">姓名 *</label>
+                <input
+                  type="text"
+                  placeholder="请输入您的姓名"
+                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">手机号 *</label>
+                <input
+                  type="tel"
+                  placeholder="请输入手机号"
+                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">学位班 *</label>
+                <select
+                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
+                  required
+                >
+                  <option value="">请选择学位班</option>
+                  <option value="MBA">MBA</option>
+                  <option value="EMBA">EMBA</option>
+                  <option value="DBA">DBA</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">所在区域 *</label>
+                <select
+                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
+                  required
+                >
+                  <option value="">请选择所在区域</option>
+                  <option value="east">华东</option>
+                  <option value="south">华南</option>
+                  <option value="north">华北</option>
+                  <option value="central">华中</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">公司 *</label>
+                <input
+                  type="text"
+                  placeholder="请输入公司名称"
+                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">职位 *</label>
+                <input
+                  type="text"
+                  placeholder="请输入职位"
+                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-foreground">职能</label>
+                <input
+                  type="text"
+                  placeholder="请输入职能"
+                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground"
+                />
+              </div>
+              <Button type="submit" className="w-full" size="lg">
+                提交申请
+              </Button>
+              <p className="text-xs text-muted-foreground text-center">
+                提交后需要等待管理员审批，我们会尽快处理您的申请
               </p>
-            </div>
+            </form>
           )}
         </Card>
       </div>

@@ -5,6 +5,7 @@ import { PlayCircle, BookOpen, Users, GraduationCap, ChevronRight, Calendar, Vid
 import { NewsCard } from "@/components/NewsCard";
 import { CourseCard } from "@/components/CourseCard";
 import { TeacherCard } from "@/components/TeacherCard";
+import logo from "@/assets/logo.png";
 
 const Home = () => {
   const banners = [
@@ -78,21 +79,29 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background pb-20">
+      {/* Header with Logo */}
+      <div className="sticky top-0 z-10 bg-background border-b border-border px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <img src={logo} alt="国研在线" className="w-8 h-8" />
+          <h1 className="text-lg font-bold text-foreground">国研在线</h1>
+        </div>
+      </div>
+
       {/* Banner */}
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-44 overflow-hidden">
         <img
           src={banners[0].image}
           alt={banners[0].title}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-          <h2 className="text-white text-xl font-bold p-6">{banners[0].title}</h2>
+          <h2 className="text-white text-xl font-bold px-4 pb-4">{banners[0].title}</h2>
         </div>
       </div>
 
       {/* Features Grid */}
-      <div className="px-4 py-6">
-        <div className="grid grid-cols-4 gap-4">
+      <div className="px-4 py-5">
+        <div className="grid grid-cols-4 gap-3">
           {features.map((feature) => (
             <Link key={feature.label} to={feature.to}>
               <Card className="p-4 text-center hover:shadow-md transition-shadow">
@@ -105,7 +114,7 @@ const Home = () => {
       </div>
 
       {/* Hot Courses */}
-      <div className="px-4 py-4">
+      <div className="px-4 py-3">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-foreground">热门课程</h2>
           <Link to="/courses" className="flex items-center text-sm text-muted-foreground">
@@ -120,7 +129,7 @@ const Home = () => {
       </div>
 
       {/* Featured Teachers */}
-      <div className="px-4 py-4">
+      <div className="px-4 py-3">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-foreground">名师团队</h2>
           <Link to="/teachers" className="flex items-center text-sm text-muted-foreground">
@@ -135,7 +144,7 @@ const Home = () => {
       </div>
 
       {/* News */}
-      <div className="px-4 py-4">
+      <div className="px-4 py-3 pb-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-foreground">最新资讯</h2>
           <Link to="/news" className="flex items-center text-sm text-muted-foreground">

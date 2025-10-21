@@ -12,6 +12,10 @@ import NewsDetail from "./pages/NewsDetail";
 import Profile from "./pages/Profile";
 import Alumni from "./pages/Alumni";
 import Auth from "./pages/Auth";
+import Orders from "./pages/Orders";
+import Favorites from "./pages/Favorites";
+import Feedback from "./pages/Feedback";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { BottomNav } from "./components/BottomNav";
 
@@ -34,6 +38,10 @@ const App = () => (
             <Route path="/alumni" element={<Alumni />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/feedback" element={<Feedback />} />
+            <Route path="/settings" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

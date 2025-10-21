@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ChevronLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import logo from "@/assets/logo.png";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -18,30 +20,68 @@ const Auth = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // 模拟登录
-    setTimeout(() => {
-      setIsLoading(false);
+    const formData = new FormData(e.target as HTMLFormElement);
+    const phone = formData.get("phone") as string;
+    const password = formData.get("password") as string;
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email: `${phone}@app.com`, // 将手机号转换为邮箱格式
+      password,
+    });
+
+    setIsLoading(false);
+
+    if (error) {
+      toast({
+        title: "登录失败",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
       toast({
         title: "登录成功",
         description: "欢迎回来！",
       });
-      navigate("/");
-    }, 1000);
+      navigate("/profile");
+    }
   };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // 模拟注册
-    setTimeout(() => {
-      setIsLoading(false);
+    const formData = new FormData(e.target as HTMLFormElement);
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const password = formData.get("password") as string;
+
+    const { error } = await supabase.auth.signUp({
+      email: `${phone}@app.com`, // 将手机号转换为邮箱格式
+      password,
+      options: {
+        data: {
+          name,
+          phone,
+        },
+        emailRedirectTo: `${window.location.origin}/`,
+      },
+    });
+
+    setIsLoading(false);
+
+    if (error) {
+      toast({
+        title: "注册失败",
+        description: error.message,
+        variant: "destructive",
+      });
+    } else {
       toast({
         title: "注册成功",
         description: "欢迎加入国研在线！",
       });
-      navigate("/");
-    }, 1000);
+      navigate("/profile");
+    }
   };
 
   return (
@@ -57,8 +97,8 @@ const Auth = () => {
       <div className="px-4 py-8">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center mb-4">
-            <span className="text-3xl font-bold text-primary-foreground">国研</span>
+          <div className="w-20 h-20 mx-auto bg-white rounded-2xl flex items-center justify-center mb-4 p-2">
+            <img src={logo} alt="国研在线" className="w-full h-full" />
           </div>
           <h2 className="text-2xl font-bold text-foreground">国研在线</h2>
           <p className="text-sm text-muted-foreground mt-1">连接知识，启迪未来</p>
@@ -78,6 +118,7 @@ const Auth = () => {
                   <Label htmlFor="login-phone">手机号</Label>
                   <Input
                     id="login-phone"
+                    name="phone"
                     type="tel"
                     placeholder="请输入手机号"
                     required
@@ -87,6 +128,7 @@ const Auth = () => {
                   <Label htmlFor="login-password">密码</Label>
                   <Input
                     id="login-password"
+                    name="password"
                     type="password"
                     placeholder="请输入密码"
                     required
@@ -124,6 +166,7 @@ const Auth = () => {
                   <Label htmlFor="register-name">姓名</Label>
                   <Input
                     id="register-name"
+                    name="name"
                     type="text"
                     placeholder="请输入姓名"
                     required
@@ -133,6 +176,7 @@ const Auth = () => {
                   <Label htmlFor="register-phone">手机号</Label>
                   <Input
                     id="register-phone"
+                    name="phone"
                     type="tel"
                     placeholder="请输入手机号"
                     required
@@ -156,8 +200,10 @@ const Auth = () => {
                   <Label htmlFor="register-password">密码</Label>
                   <Input
                     id="register-password"
+                    name="password"
                     type="password"
                     placeholder="请输入密码（6-20位）"
+                    minLength={6}
                     required
                   />
                 </div>

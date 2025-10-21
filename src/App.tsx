@@ -16,6 +16,10 @@ import Orders from "./pages/Orders";
 import Favorites from "./pages/Favorites";
 import Feedback from "./pages/Feedback";
 import Settings from "./pages/Settings";
+import Teachers from "./pages/Teachers";
+import News from "./pages/News";
+import Agreement from "./pages/Agreement";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import { BottomNav } from "./components/BottomNav";
 
@@ -42,6 +46,10 @@ const App = () => (
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/teachers" element={<Teachers />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/agreement" element={<Agreement />} />
+            <Route path="/privacy" element={<Privacy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

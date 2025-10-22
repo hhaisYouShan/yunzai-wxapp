@@ -76,37 +76,10 @@ const Alumni = () => {
         {/* Featured Activity */}
         <FeaturedActivityCard activity={activities[0]} onView={(id) => navigate(`/alumni/activity/${id}`)} />
 
-        {/* Intro + Stats */}
-        <section className="px-4 mb-6 animate-fade-in">
-          <Card className="p-6 bg-gradient-to-br from-background to-muted/20">
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="font-bold text-foreground">关于校友会</h2>
-              <Link to="/alumni/about">
-                <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">
-                  查看更多 <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
-              </Link>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-              国研校友会是连接各地校友的重要纽带，为校友提供持续学习、资源共享、合作发展的平台。
-            </p>
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border mt-3">
-              <div className="text-center">
-                <p className="text-2xl font-bold text-primary">682</p>
-                <p className="text-xs text-muted-foreground mt-1">校友总数</p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-secondary">4</p>
-                <p className="text-xs text-muted-foreground mt-1">覆盖区域</p>
-              </div>
-            </div>
-          </Card>
-        </section>
-
-        {/* Regions - 2x2 Grid */}
+        {/* Regions - 1 Row 4 Columns */}
         <section className="px-4 mb-6 animate-fade-in">
           <h2 className="font-bold text-foreground mb-3">分区校友会</h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-4 gap-3">
             {regions.map((region) => (
               <Link key={region.id} to={`/alumni/${region.id}`}>
                 <Card className="p-4 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/40">

@@ -120,7 +120,7 @@ const Discover = () => {
       </div>
 
       {/* Content */}
-      <div className="px-4 py-4 space-y-3">
+      <div className="px-4 py-4 space-y-4">
         {newsData[activeTab as keyof typeof newsData].map((item) => (
           <NewsCard key={item.id} news={item} />
         ))}

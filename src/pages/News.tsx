@@ -194,7 +194,7 @@ const News = () => {
       </div>
 
       {/* News List */}
-      <div className="px-4 py-4 space-y-3">
+      <div className="px-4 py-4 space-y-4">
         {filteredNews.map((news) => (
           <NewsCard key={news.id} news={news} />
         ))}

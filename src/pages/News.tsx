@@ -72,6 +72,70 @@ const News = () => {
       views: 436,
       image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400",
     },
+    {
+      id: 8,
+      title: "国研博士班｜宏观经济形势分析与政策解读专题讲座",
+      category: "国研动态",
+      date: "2025-08-05",
+      views: 234,
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400",
+    },
+    {
+      id: 9,
+      title: "李明教授：数字化转型时代的企业战略创新",
+      category: "教师采访",
+      date: "2025-07-28",
+      views: 189,
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400",
+    },
+    {
+      id: 10,
+      title: "战略管理课程回顾｜企业竞争优势构建实战演练",
+      category: "课程回顾",
+      date: "2025-07-20",
+      views: 567,
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400",
+    },
+    {
+      id: 11,
+      title: "重磅｜国研商学院与世界知名大学达成战略合作",
+      category: "国研动态",
+      date: "2025-07-15",
+      views: 892,
+      image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400",
+    },
+    {
+      id: 12,
+      title: "张华博士：人工智能驱动的商业模式创新探索",
+      category: "教师采访",
+      date: "2025-07-10",
+      views: 345,
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+    },
+    {
+      id: 13,
+      title: "金融投资与风险管理课程精彩回顾",
+      category: "课程回顾",
+      date: "2025-07-05",
+      views: 423,
+      image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=400",
+    },
+    {
+      id: 14,
+      title: "国研商学院2025年春季学位授予典礼圆满举行",
+      category: "国研动态",
+      date: "2025-06-28",
+      views: 678,
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400",
+    },
+    {
+      id: 15,
+      title: "王教授专访：全球化背景下的企业国际化战略",
+      category: "教师采访",
+      date: "2025-06-20",
+      views: 267,
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400",
+    },
   ];
 
   const getCategoryKey = (category: string) => {
@@ -130,7 +194,7 @@ const News = () => {
       </div>
 
       {/* News List */}
-      <div className="px-4 py-4 space-y-4">
+      <div className="px-4 py-4 space-y-3">
         {filteredNews.map((news) => (
           <NewsCard key={news.id} news={news} />
         ))}

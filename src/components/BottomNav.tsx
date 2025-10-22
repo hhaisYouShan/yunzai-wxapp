@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Compass, BookOpen, User } from "lucide-react";
+import { Home, Compass, BookOpen, User, Users } from "lucide-react";
 
 export const BottomNav = () => {
   const location = useLocation();
@@ -7,6 +7,7 @@ export const BottomNav = () => {
   const navItems = [
     { icon: Home, label: "首页", path: "/" },
     { icon: Compass, label: "发现", path: "/discover" },
+    { icon: Users, label: "校友会", path: "/alumni" },
     { icon: BookOpen, label: "上课", path: "/courses" },
     { icon: User, label: "我的", path: "/profile" },
   ];

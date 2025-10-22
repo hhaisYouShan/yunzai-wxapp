@@ -1,8 +1,9 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Home, Compass, BookOpen, User, Users } from "lucide-react";
 
 export const BottomNav = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   
   const navItems = [
     { icon: Home, label: "首页", path: "/" },
@@ -18,9 +19,9 @@ export const BottomNav = () => {
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
-            <Link
+            <button
               key={item.path}
-              to={item.path}
+              onClick={() => navigate(item.path)}
               className="flex flex-col items-center justify-center flex-1 h-full"
             >
               <item.icon 
@@ -29,7 +30,7 @@ export const BottomNav = () => {
               <span className={`text-xs mt-1 ${isActive ? "text-primary font-medium" : "text-muted-foreground"}`}>
                 {item.label}
               </span>
-            </Link>
+            </button>
           );
         })}
       </div>

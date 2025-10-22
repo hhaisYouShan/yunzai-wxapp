@@ -1,7 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ChevronRight, MapPin, Briefcase, GraduationCap, Calendar, Users as UsersIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const Alumni = () => {
   const navigate = useNavigate();
@@ -80,23 +82,69 @@ const Alumni = () => {
 
   return (
     <div className="min-h-screen bg-background pb-20">
-      {/* Header */}
-      <div className="bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-dark)))] text-primary-foreground px-4 py-8">
-        <h1 className="text-2xl font-bold mb-2">校友会</h1>
-        <p className="text-sm opacity-90">连接精英，共创未来</p>
+      {/* Header with Logo */}
+      <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/5 px-4 py-6 border-b border-border">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="校友会" className="w-12 h-12 object-contain" />
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">校友会</h1>
+              <p className="text-xs text-muted-foreground">连接精英，共创未来</p>
+            </div>
+          </div>
+          <Button
+            onClick={() => navigate("/alumni/application")}
+            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-[var(--shadow-red)]"
+          >
+            加入校友会
+          </Button>
+        </div>
       </div>
 
-      {/* Stats */}
-      <div className="px-4 -mt-6 mb-6">
-        <Card className="p-4 shadow-[var(--shadow-medium)]">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="text-center">
-              <p className="text-2xl font-bold text-primary">682</p>
-              <p className="text-sm text-muted-foreground mt-1">校友总数</p>
+      {/* Featured Activity Preview */}
+      <div className="px-4 py-6">
+        <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
+          <div className="flex gap-4 p-4">
+            <div className="relative w-32 h-32 flex-shrink-0 rounded-lg overflow-hidden">
+              <img
+                src={activities[0].image}
+                alt={activities[0].title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute top-2 left-2">
+                <Badge className="bg-primary text-primary-foreground text-xs">
+                  活动预告
+                </Badge>
+              </div>
             </div>
-            <div className="text-center border-l border-border">
-              <p className="text-2xl font-bold text-secondary">4</p>
-              <p className="text-sm text-muted-foreground mt-1">覆盖区域</p>
+            <div className="flex-1 flex flex-col justify-between">
+              <div>
+                <h3 className="font-bold text-base text-foreground mb-1 line-clamp-2">
+                  {activities[0].title}
+                </h3>
+                <div className="space-y-1 mb-2">
+                  <p className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <Calendar className="w-3.5 h-3.5 text-primary" />
+                    <span>{activities[0].date}</span>
+                  </p>
+                  <p className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <MapPin className="w-3.5 h-3.5 text-secondary" />
+                    <span>{activities[0].location}</span>
+                  </p>
+                </div>
+                <p className="text-xs text-muted-foreground line-clamp-2">
+                  {activities[0].description}
+                </p>
+              </div>
+              <div className="mt-2">
+                <Button
+                  onClick={() => navigate(`/alumni/activity/${activities[0].id}`)}
+                  size="sm"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  查看详情
+                </Button>
+              </div>
             </div>
           </div>
         </Card>
@@ -104,35 +152,40 @@ const Alumni = () => {
 
       {/* Introduction */}
       <div className="px-4 mb-6">
-        <Card className="p-4">
-          <h2 className="font-bold text-foreground mb-3">校友会简介</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-            国研校友会是连接各地校友的重要纽带，为校友提供持续学习、资源共享、合作发展的平台。
-            我们定期组织各类活动，促进校友间的交流与合作，助力个人成长与企业发展。
-          </p>
-          <Button
-            className="w-full bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-dark)))] hover:opacity-90 shadow-[var(--shadow-red)]"
-            size="lg"
-            onClick={() => navigate("/alumni/application")}
-          >
-            立即申请加入
-          </Button>
+        <Card className="p-6 bg-gradient-to-br from-background to-muted/20">
+          <div className="flex items-start gap-3 mb-4">
+            <img src={logo} alt="校友会" className="w-10 h-10 object-contain" />
+            <div className="flex-1">
+              <h2 className="font-bold text-foreground mb-2">关于校友会</h2>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                国研校友会是连接各地校友的重要纽带，为校友提供持续学习、资源共享、合作发展的平台。
+                我们定期组织各类活动，促进校友间的交流与合作，助力个人成长与企业发展。
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border">
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary">682</p>
+              <p className="text-xs text-muted-foreground mt-1">校友总数</p>
+            </div>
+            <div className="text-center">
+              <p className="text-2xl font-bold text-secondary">4</p>
+              <p className="text-xs text-muted-foreground mt-1">覆盖区域</p>
+            </div>
+          </div>
         </Card>
       </div>
 
       {/* Regions */}
       <div className="px-4 mb-6">
         <h2 className="font-bold text-foreground mb-3">分区校友会</h2>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="flex gap-2 overflow-x-auto pb-2">
           {regions.map((region) => (
-            <Link key={region.id} to={`/alumni/${region.id}`}>
-              <Card className="p-4 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/30">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-bold text-primary mb-1">{region.name}</h3>
-                    <p className="text-sm text-muted-foreground">{region.count}位校友</p>
-                  </div>
-                  <ChevronRight className="w-5 h-5 text-primary/60" />
+            <Link key={region.id} to={`/alumni/${region.id}`} className="flex-shrink-0">
+              <Card className="px-6 py-3 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/40 whitespace-nowrap">
+                <div className="text-center">
+                  <h3 className="font-bold text-primary text-base mb-0.5">{region.name}</h3>
+                  <p className="text-xs text-muted-foreground">{region.count}人</p>
                 </div>
               </Card>
             </Link>
@@ -140,44 +193,42 @@ const Alumni = () => {
         </div>
       </div>
 
-      {/* Sample Alumni (Limited Info) */}
+      {/* Sample Alumni Grid */}
       <div className="px-4 mb-6">
         <div className="flex items-center justify-between mb-3">
           <h2 className="font-bold text-foreground">部分校友展示</h2>
           <span className="text-xs text-muted-foreground">仅展示部分信息</span>
         </div>
-        <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
           {sampleAlumni.slice(0, 4).map((alumni) => (
-            <Card key={alumni.id} className="p-4">
-              <div className="flex items-start gap-3">
-                <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-                  <span className="text-lg font-bold text-muted-foreground">
+            <Card key={alumni.id} className="p-4 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/10 hover:shadow-[var(--shadow-medium)] transition-all">
+              <div className="text-center mb-3">
+                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-2">
+                  <span className="text-2xl font-bold text-primary">
                     {alumni.name.charAt(0)}
                   </span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-foreground">{alumni.name}</h3>
-                  <div className="mt-2 space-y-1 text-sm text-muted-foreground">
-                    <p className="flex items-center gap-2">
-                      <GraduationCap className="w-4 h-4 flex-shrink-0" />
-                      <span className="truncate">{alumni.degree}</span>
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <Briefcase className="w-4 h-4 flex-shrink-0" />
-                      <span className="truncate">{alumni.company}</span>
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 flex-shrink-0" />
-                      <span>{alumni.region}</span>
-                    </p>
-                  </div>
-                </div>
+                <h3 className="font-bold text-foreground text-sm">{alumni.name}</h3>
+              </div>
+              <div className="space-y-1.5 text-xs text-muted-foreground">
+                <p className="flex items-center gap-1.5">
+                  <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 text-primary" />
+                  <span className="truncate">{alumni.degree}</span>
+                </p>
+                <p className="flex items-center gap-1.5">
+                  <Briefcase className="w-3.5 h-3.5 flex-shrink-0 text-secondary" />
+                  <span className="truncate">{alumni.company}</span>
+                </p>
+                <p className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 flex-shrink-0 text-primary" />
+                  <span>{alumni.region}</span>
+                </p>
               </div>
             </Card>
           ))}
         </div>
         <div className="mt-4 text-center">
-          <p className="text-sm text-muted-foreground mb-3">
+          <p className="text-sm text-muted-foreground">
             加入校友会查看完整校友信息
           </p>
         </div>

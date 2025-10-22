@@ -6,10 +6,9 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const Courses = () => {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("video");
 
   const tabs = [
-    { id: "all", label: "全部" },
     { id: "video", label: "视频课" },
     { id: "live", label: "直播课" },
   ];
@@ -53,9 +52,7 @@ const Courses = () => {
     },
   ];
 
-  const filteredCourses = activeTab === "all" 
-    ? courses 
-    : courses.filter(c => c.type === activeTab);
+  const filteredCourses = courses.filter(c => c.type === activeTab);
 
   const upcomingLive = {
     title: "金融科技创新实战",

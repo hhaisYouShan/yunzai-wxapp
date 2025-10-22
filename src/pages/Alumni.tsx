@@ -106,10 +106,17 @@ const Alumni = () => {
       <div className="px-4 mb-6">
         <Card className="p-4">
           <h2 className="font-bold text-foreground mb-3">校友会简介</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
             国研校友会是连接各地校友的重要纽带，为校友提供持续学习、资源共享、合作发展的平台。
             我们定期组织各类活动，促进校友间的交流与合作，助力个人成长与企业发展。
           </p>
+          <Button
+            className="w-full bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-dark)))] hover:opacity-90 shadow-[var(--shadow-red)]"
+            size="lg"
+            onClick={() => navigate("/alumni/application")}
+          >
+            立即申请加入
+          </Button>
         </Card>
       </div>
 
@@ -210,31 +217,17 @@ const Alumni = () => {
                 </div>
               </div>
               <div className="px-4 pb-4">
-                <Button variant="outline" size="sm" className="w-full border-primary/30 text-primary hover:bg-primary/5 hover:border-primary">
-                  查看详情
-                </Button>
+                <Link to={`/alumni/activity/${activity.id}`} className="block">
+                  <Button variant="outline" size="sm" className="w-full border-primary/30 text-primary hover:bg-primary/5 hover:border-primary">
+                    查看详情
+                  </Button>
+                </Link>
               </div>
             </Card>
           ))}
         </div>
       </div>
 
-      {/* Join Button */}
-      <div className="px-4">
-        <Card className="p-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 shadow-[var(--shadow-soft)]">
-          <h3 className="font-bold text-foreground text-center mb-2">申请加入校友会</h3>
-          <p className="text-sm text-muted-foreground text-center mb-4">
-            完善您的信息，加入我们的校友大家庭
-          </p>
-          <Button
-            className="w-full bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-dark)))] hover:opacity-90 shadow-[var(--shadow-red)]"
-            size="lg"
-            onClick={() => navigate("/alumni/application")}
-          >
-            立即申请
-          </Button>
-        </Card>
-      </div>
     </div>
   );
 };

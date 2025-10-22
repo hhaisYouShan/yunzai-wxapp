@@ -14,6 +14,9 @@ import Alumni from "./pages/Alumni";
 import AlumniApplication from "./pages/AlumniApplication";
 import AlumniRegion from "./pages/AlumniRegion";
 import AlumniActivity from "./pages/AlumniActivity";
+import AlumniAbout from "./pages/AlumniAbout";
+import AlumniMembers from "./pages/AlumniMembers";
+import AlumniActivitiesList from "./pages/AlumniActivitiesList";
 import Auth from "./pages/Auth";
 import Orders from "./pages/Orders";
 import Favorites from "./pages/Favorites";
@@ -43,6 +46,9 @@ const App = () => (
             <Route path="/teachers/:id" element={<TeacherDetail />} />
             <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/alumni" element={<Alumni />} />
+          <Route path="/alumni/about" element={<AlumniAbout />} />
+          <Route path="/alumni/members" element={<AlumniMembers />} />
+          <Route path="/alumni/activities" element={<AlumniActivitiesList />} />
           <Route path="/alumni/application" element={<AlumniApplication />} />
           <Route path="/alumni/:regionId" element={<AlumniRegion />} />
           <Route path="/alumni/activity/:activityId" element={<AlumniActivity />} />

@@ -7,10 +7,9 @@ import { NewsCard } from "@/components/NewsCard";
 const News = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("dynamics");
 
   const tabs = [
-    { id: "all", label: "全部" },
     { id: "dynamics", label: "国研动态" },
     { id: "interview", label: "教师采访" },
     { id: "review", label: "课程回顾" },
@@ -88,7 +87,7 @@ const News = () => {
     const matchesSearch =
       news.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       news.category.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesTab = activeTab === "all" || getCategoryKey(news.category) === activeTab;
+    const matchesTab = getCategoryKey(news.category) === activeTab;
     return matchesSearch && matchesTab;
   });
 
@@ -131,7 +130,7 @@ const News = () => {
       </div>
 
       {/* News List */}
-      <div className="px-4 py-4 space-y-3">
+      <div className="px-4 py-4 space-y-4">
         {filteredNews.map((news) => (
           <NewsCard key={news.id} news={news} />
         ))}

@@ -11,6 +11,7 @@ import TeacherDetail from "./pages/TeacherDetail";
 import NewsDetail from "./pages/NewsDetail";
 import Profile from "./pages/Profile";
 import Alumni from "./pages/Alumni";
+import AlumniApplication from "./pages/AlumniApplication";
 import Auth from "./pages/Auth";
 import Orders from "./pages/Orders";
 import Favorites from "./pages/Favorites";
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/teachers/:id" element={<TeacherDetail />} />
             <Route path="/news/:id" element={<NewsDetail />} />
             <Route path="/alumni" element={<Alumni />} />
+            <Route path="/alumni/application" element={<AlumniApplication />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/orders" element={<Orders />} />

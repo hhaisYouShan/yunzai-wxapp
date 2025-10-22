@@ -1,12 +1,10 @@
-import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, MapPin, Briefcase, GraduationCap, Calendar, Users as UsersIcon, Upload } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ChevronRight, MapPin, Briefcase, GraduationCap, Calendar, Users as UsersIcon } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Alumni = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState<string>("");
+  const navigate = useNavigate();
 
   const regions = [
     { id: "east", name: "华东", count: 156 },
@@ -80,35 +78,24 @@ const Alumni = () => {
     },
   ];
 
-  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setAvatarPreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
-      <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white px-4 py-8">
+      <div className="bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-dark)))] text-primary-foreground px-4 py-8">
         <h1 className="text-2xl font-bold mb-2">校友会</h1>
         <p className="text-sm opacity-90">连接精英，共创未来</p>
       </div>
 
       {/* Stats */}
       <div className="px-4 -mt-6 mb-6">
-        <Card className="p-4 shadow-lg">
+        <Card className="p-4 shadow-[var(--shadow-medium)]">
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center">
-              <p className="text-2xl font-bold text-blue-600">682</p>
+              <p className="text-2xl font-bold text-primary">682</p>
               <p className="text-sm text-muted-foreground mt-1">校友总数</p>
             </div>
             <div className="text-center border-l border-border">
-              <p className="text-2xl font-bold text-purple-600">4</p>
+              <p className="text-2xl font-bold text-secondary">4</p>
               <p className="text-sm text-muted-foreground mt-1">覆盖区域</p>
             </div>
           </div>
@@ -132,13 +119,13 @@ const Alumni = () => {
         <div className="grid grid-cols-2 gap-3">
           {regions.map((region) => (
             <Link key={region.id} to={`/alumni/${region.id}`}>
-              <Card className="p-4 hover:shadow-lg transition-all hover:scale-105 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 border-blue-200 dark:border-blue-800">
+              <Card className="p-4 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/30">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-bold text-blue-700 dark:text-blue-300 mb-1">{region.name}</h3>
-                    <p className="text-sm text-blue-600 dark:text-blue-400">{region.count}位校友</p>
+                    <h3 className="font-bold text-primary mb-1">{region.name}</h3>
+                    <p className="text-sm text-muted-foreground">{region.count}位校友</p>
                   </div>
-                  <ChevronRight className="w-5 h-5 text-blue-500" />
+                  <ChevronRight className="w-5 h-5 text-primary/60" />
                 </div>
               </Card>
             </Link>
@@ -194,26 +181,26 @@ const Alumni = () => {
         <h2 className="font-bold text-foreground mb-3">校友会活动</h2>
         <div className="space-y-4">
           {activities.map((activity) => (
-            <Card key={activity.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+            <Card key={activity.id} className="overflow-hidden hover:shadow-[var(--shadow-medium)] transition-shadow">
               <div className="flex gap-4 p-4">
                 <img
                   src={activity.image}
                   alt={activity.title}
-                  className="w-28 h-28 object-cover rounded-lg flex-shrink-0"
+                  className="w-28 h-28 object-cover rounded-lg flex-shrink-0 border border-border"
                 />
                 <div className="flex-1 min-w-0">
                   <h3 className="font-bold text-foreground mb-2 line-clamp-1">{activity.title}</h3>
                   <div className="space-y-1.5 text-xs text-muted-foreground mb-3">
                     <p className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-blue-500" />
+                      <Calendar className="w-3.5 h-3.5 text-primary" />
                       <span>{activity.date}</span>
                     </p>
                     <p className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-purple-500" />
+                      <MapPin className="w-3.5 h-3.5 text-secondary" />
                       <span>{activity.location}</span>
                     </p>
                     <p className="flex items-center gap-1.5">
-                      <UsersIcon className="w-3.5 h-3.5 text-green-500" />
+                      <UsersIcon className="w-3.5 h-3.5 text-primary" />
                       <span>{activity.participants}人参与</span>
                     </p>
                   </div>
@@ -223,7 +210,7 @@ const Alumni = () => {
                 </div>
               </div>
               <div className="px-4 pb-4">
-                <Button variant="outline" size="sm" className="w-full text-blue-600 border-blue-300 hover:bg-blue-50 dark:text-blue-400 dark:border-blue-700 dark:hover:bg-blue-950">
+                <Button variant="outline" size="sm" className="w-full border-primary/30 text-primary hover:bg-primary/5 hover:border-primary">
                   查看详情
                 </Button>
               </div>
@@ -234,116 +221,18 @@ const Alumni = () => {
 
       {/* Join Button */}
       <div className="px-4">
-        <Card className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 border-blue-200 dark:border-blue-800">
+        <Card className="p-6 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 shadow-[var(--shadow-soft)]">
           <h3 className="font-bold text-foreground text-center mb-2">申请加入校友会</h3>
           <p className="text-sm text-muted-foreground text-center mb-4">
             完善您的信息，加入我们的校友大家庭
           </p>
           <Button
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            className="w-full bg-[linear-gradient(135deg,hsl(var(--primary)),hsl(var(--primary-dark)))] hover:opacity-90 shadow-[var(--shadow-red)]"
             size="lg"
-            onClick={() => setShowForm(!showForm)}
+            onClick={() => navigate("/alumni/application")}
           >
-            {showForm ? "收起表单" : "立即申请"}
+            立即申请
           </Button>
-          {showForm && (
-            <form className="mt-4 space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">头像 *</label>
-                <div className="flex items-center gap-4">
-                  <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center overflow-hidden border-2 border-blue-200 dark:border-blue-800">
-                    {avatarPreview ? (
-                      <img src={avatarPreview} alt="Avatar preview" className="w-full h-full object-cover" />
-                    ) : (
-                      <Upload className="w-8 h-8 text-muted-foreground" />
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleAvatarChange}
-                      className="hidden"
-                      id="avatar-upload"
-                      required
-                    />
-                    <label htmlFor="avatar-upload">
-                      <Button type="button" variant="outline" size="sm" className="cursor-pointer" asChild>
-                        <span>上传头像</span>
-                      </Button>
-                    </label>
-                    <p className="text-xs text-muted-foreground mt-1">支持 JPG、PNG 格式</p>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">姓名 *</label>
-                <input
-                  type="text"
-                  placeholder="请输入您的姓名"
-                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">学位班 *</label>
-                <select
-                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  required
-                >
-                  <option value="">请选择学位班</option>
-                  <option value="MBA">MBA</option>
-                  <option value="EMBA">EMBA</option>
-                  <option value="DBA">DBA</option>
-                </select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">所在区域 *</label>
-                <select
-                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  required
-                >
-                  <option value="">请选择所在区域</option>
-                  <option value="east">华东</option>
-                  <option value="south">华南</option>
-                  <option value="north">华北</option>
-                  <option value="central">华中</option>
-                </select>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">公司 *</label>
-                <input
-                  type="text"
-                  placeholder="请输入公司名称"
-                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">职位 *</label>
-                <input
-                  type="text"
-                  placeholder="请输入职位"
-                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">职能</label>
-                <input
-                  type="text"
-                  placeholder="请输入职能"
-                  className="w-full px-3 py-2 bg-background border border-border rounded-md text-foreground focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                />
-              </div>
-              <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" size="lg">
-                提交申请
-              </Button>
-              <p className="text-xs text-muted-foreground text-center">
-                提交后需要等待管理员审批，我们会尽快处理您的申请
-              </p>
-            </form>
-          )}
         </Card>
       </div>
     </div>

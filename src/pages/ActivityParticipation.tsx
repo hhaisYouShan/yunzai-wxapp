@@ -34,17 +34,19 @@ const ActivityParticipation = () => {
   useEffect(() => {
     const fetchUserAndActivities = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      setUser(session?.user ?? null);
-
-      if (session?.user) {
-        await fetchActivities(session.user.id);
-      } else {
-        setLoading(false);
+      
+      if (!session?.user) {
+        // 如果未登录，重定向到登录页
+        navigate("/auth");
+        return;
       }
+
+      setUser(session.user);
+      await fetchActivities(session.user.id);
     };
 
     fetchUserAndActivities();
-  }, []);
+  }, [navigate]);
 
   const fetchActivities = async (userId: string) => {
     try {
@@ -151,14 +153,7 @@ const ActivityParticipation = () => {
 
       {/* Content */}
       <div className="p-4">
-        {!user ? (
-          <Card className="p-8 text-center">
-            <p className="text-muted-foreground mb-4">请先登录查看您的活动参与记录</p>
-            <Link to="/auth">
-              <Button>立即登录</Button>
-            </Link>
-          </Card>
-        ) : loading ? (
+        {loading ? (
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
               <Card key={i} className="p-4 animate-pulse">

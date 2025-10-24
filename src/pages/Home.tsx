@@ -14,9 +14,9 @@ const Home = () => {
   ];
 
   const features = [
-    { icon: School, label: "学校", color: "text-primary", to: "/schools" },
-    { icon: Briefcase, label: "研修班", color: "text-primary", to: "/training" },
-    { icon: GraduationCap, label: "名师团队", color: "text-accent", to: "/teachers" },
+    { icon: Video, label: "视频课", color: "text-primary", to: "/courses?type=video" },
+    { icon: PlayCircle, label: "直播课", color: "text-primary", to: "/courses?type=live" },
+    { icon: BookOpen, label: "专栏系列", color: "text-accent", to: "/discover" },
     { icon: Users, label: "校友会", color: "text-accent", to: "/alumni" },
   ];
 

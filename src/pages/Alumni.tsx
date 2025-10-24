@@ -4,7 +4,7 @@ import HeroHeader from "@/components/alumni/HeroHeader";
 import FeaturedActivityCard, { ActivityItem } from "@/components/alumni/FeaturedActivityCard";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Briefcase, GraduationCap, MapPin, Calendar, Users as UsersIcon } from "lucide-react";
+import { ChevronRight, Briefcase, GraduationCap, MapPin, Calendar, Users as UsersIcon, Compass, Mountain, Building2, Landmark, Trophy, Medal, Award } from "lucide-react";
 import type { AlumniItem } from "@/components/alumni/AlumniShowcase";
 
 interface RegionItem {
@@ -16,11 +16,11 @@ interface RegionItem {
 const Alumni = () => {
   const navigate = useNavigate();
 
-  const regions: RegionItem[] = [
-    { id: "east", name: "华东", count: 156 },
-    { id: "south", name: "华南", count: 203 },
-    { id: "north", name: "华北", count: 178 },
-    { id: "central", name: "华中", count: 145 },
+  const regions = [
+    { id: "east", name: "华东", icon: Building2 },
+    { id: "south", name: "华南", icon: Compass },
+    { id: "north", name: "华北", icon: Landmark },
+    { id: "central", name: "华中", icon: Mountain },
   ];
 
   const sampleAlumni: AlumniItem[] = [
@@ -76,29 +76,34 @@ const Alumni = () => {
         {/* Featured Activity */}
         <FeaturedActivityCard activity={activities[0]} onView={(id) => navigate(`/alumni/activity/${id}`)} />
 
-        {/* Regions - 1 Row 4 Columns */}
+        {/* Regions - Icon Display */}
         <section className="px-4 mb-6 animate-fade-in">
           <h2 className="font-bold text-foreground mb-3">分区校友会</h2>
           <div className="grid grid-cols-4 gap-3">
-            {regions.map((region) => (
-              <Link key={region.id} to={`/alumni/${region.id}`}>
-                <Card className="p-4 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/40">
-                  <div className="text-center">
-                    <h3 className="font-bold text-primary text-lg mb-1">{region.name}</h3>
-                    <p className="text-sm text-muted-foreground">{region.count}人</p>
-                  </div>
-                </Card>
-              </Link>
-            ))}
+            {regions.map((region) => {
+              const IconComponent = region.icon;
+              return (
+                <Link key={region.id} to={`/alumni/${region.id}`}>
+                  <Card className="p-4 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/40">
+                    <div className="text-center">
+                      <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                        <IconComponent className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="font-bold text-primary text-sm">{region.name}</h3>
+                    </div>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
-        {/* Alumni Preview - Featured + List Layout */}
+        {/* Outstanding Alumni Ranking */}
         <section className="px-4 mb-6 animate-fade-in">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="font-bold text-foreground text-lg">部分校友展示</h2>
-              <p className="text-xs text-muted-foreground mt-0.5">优秀校友风采</p>
+              <h2 className="font-bold text-foreground text-lg">杰出校友</h2>
+              <p className="text-xs text-muted-foreground mt-0.5">优秀校友榜单</p>
             </div>
             <Link to="/alumni/members">
               <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">
@@ -108,94 +113,68 @@ const Alumni = () => {
           </div>
 
           <div className="space-y-3">
-            {/* Featured Alumni - First One */}
-            {sampleAlumni.slice(0, 1).map((a) => (
-              <Card key={a.id} className="group relative overflow-hidden bg-gradient-to-br from-primary/10 via-primary/5 to-secondary/10 border-primary/20 hover:border-primary/40 hover:shadow-xl transition-all duration-300">
-                {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-50" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-secondary/10 to-transparent rounded-tr-full opacity-50" />
-                
-                <div className="relative p-5">
-                  <div className="flex items-start gap-4">
-                    {/* Avatar */}
-                    <div className="relative flex-shrink-0">
-                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/30 via-primary/20 to-secondary/30 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
-                        <span className="text-3xl font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">
-                          {a.name.charAt(0)}
-                        </span>
-                      </div>
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-3 border-card shadow-md flex items-center justify-center">
-                        <span className="text-white text-xs">✓</span>
-                      </div>
-                    </div>
-
-                    {/* Info */}
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-foreground text-lg mb-1">{a.name}</h3>
-                      <p className="text-sm text-primary font-medium mb-3">{a.position}</p>
-                      
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-xs">
-                          <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                            <GraduationCap className="w-3.5 h-3.5 text-primary" />
-                          </div>
-                          <span className="text-muted-foreground">{a.degree}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs">
-                          <div className="w-6 h-6 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                            <Briefcase className="w-3.5 h-3.5 text-secondary" />
-                          </div>
-                          <span className="text-muted-foreground">{a.company}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs">
-                          <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                            <MapPin className="w-3.5 h-3.5 text-primary" />
-                          </div>
-                          <span className="text-muted-foreground">{a.region}</span>
-                        </div>
-                      </div>
+            {sampleAlumni.slice(0, 5).map((a, index) => {
+              const rankColors = [
+                { bg: "from-yellow-500/20 to-yellow-600/10", border: "border-yellow-500/40", text: "text-yellow-600", icon: Trophy },
+                { bg: "from-gray-400/20 to-gray-500/10", border: "border-gray-400/40", text: "text-gray-600", icon: Medal },
+                { bg: "from-orange-600/20 to-orange-700/10", border: "border-orange-600/40", text: "text-orange-700", icon: Award },
+                { bg: "from-primary/10 to-primary/5", border: "border-primary/30", text: "text-primary", icon: GraduationCap },
+                { bg: "from-secondary/10 to-secondary/5", border: "border-secondary/30", text: "text-secondary", icon: GraduationCap },
+              ];
+              const rankStyle = rankColors[index];
+              const RankIcon = rankStyle.icon;
+              
+              return (
+                <Card key={a.id} className={`group relative overflow-hidden bg-gradient-to-br ${rankStyle.bg} ${rankStyle.border} border-2 hover:shadow-xl transition-all duration-300`}>
+                  {/* Rank Number */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${rankStyle.bg} border-2 ${rankStyle.border} flex items-center justify-center shadow-lg`}>
+                      <span className={`text-lg font-bold ${rankStyle.text}`}>{index + 1}</span>
                     </div>
                   </div>
-                </div>
-              </Card>
-            ))}
 
-            {/* Other Alumni - Compact List */}
-            <div className="grid grid-cols-1 gap-2">
-              {sampleAlumni.slice(1, 4).map((a) => (
-                <Card key={a.id} className="group bg-card/50 border-border/50 hover:bg-card hover:border-primary/30 hover:shadow-md transition-all duration-200">
-                  <div className="flex items-center gap-3 p-3">
-                    {/* Small Avatar */}
-                    <div className="relative flex-shrink-0">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                        <span className="text-lg font-bold bg-gradient-to-br from-primary to-secondary bg-clip-text text-transparent">
-                          {a.name.charAt(0)}
-                        </span>
+                  {/* Rank Icon */}
+                  <div className="absolute top-2 right-2 z-10">
+                    <RankIcon className={`w-6 h-6 ${rankStyle.text} opacity-50`} />
+                  </div>
+
+                  <div className="relative p-4 pl-16">
+                    <div className="flex items-start gap-4">
+                      {/* Avatar */}
+                      <div className="relative flex-shrink-0">
+                        <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${rankStyle.bg} border-2 ${rankStyle.border} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform`}>
+                          <span className={`text-2xl font-bold ${rankStyle.text}`}>
+                            {a.name.charAt(0)}
+                          </span>
+                        </div>
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-card shadow-sm" />
                       </div>
-                      <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-card" />
+
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-foreground text-base mb-1">{a.name}</h3>
+                        <p className={`text-sm font-semibold ${rankStyle.text} mb-2`}>{a.position}</p>
+                        
+                        <div className="space-y-1.5">
+                          <div className="flex items-center gap-2 text-xs">
+                            <GraduationCap className="w-3.5 h-3.5 text-muted-foreground" />
+                            <span className="text-muted-foreground">{a.degree}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs">
+                            <Briefcase className="w-3.5 h-3.5 text-muted-foreground" />
+                            <span className="text-muted-foreground truncate">{a.company}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs">
+                            <MapPin className="w-3.5 h-3.5 text-muted-foreground" />
+                            <span className="text-muted-foreground">{a.region}</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-
-                    {/* Compact Info */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <h3 className="font-bold text-foreground text-sm truncate">{a.name}</h3>
-                        <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-0.5 rounded-full flex-shrink-0">{a.region}</span>
-                      </div>
-                      <p className="text-xs text-muted-foreground truncate mb-1">{a.position}</p>
-                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <GraduationCap className="w-3 h-3 text-primary" />
-                          {a.degree}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Arrow */}
-                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                   </div>
                 </Card>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
           {/* Footer CTA */}

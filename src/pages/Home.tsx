@@ -234,8 +234,8 @@ const Home = () => {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-foreground">热门课程</h2>
           <button 
-            onClick={() => navigate('/courses')} 
-            className="flex items-center text-sm text-muted-foreground"
+            onClick={() => navigate('/hot-courses')} 
+            className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             更多 <ChevronRight className="w-4 h-4" />
           </button>

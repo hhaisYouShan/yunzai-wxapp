@@ -81,15 +81,11 @@ const Alumni = () => {
           <h2 className="font-bold text-foreground mb-3">分区校友会</h2>
           <div className="grid grid-cols-4 gap-3">
             {regions.map((region) => {
-              const IconComponent = region.icon;
               return (
                 <Link key={region.id} to={`/alumni/${region.id}`}>
                   <Card className="p-4 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/40">
                     <div className="text-center">
-                      <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                        <IconComponent className="w-6 h-6 text-primary" />
-                      </div>
-                      <h3 className="font-bold text-primary text-sm">{region.name}</h3>
+                      <h3 className="font-bold text-primary text-base">{region.name}</h3>
                     </div>
                   </Card>
                 </Link>
@@ -102,8 +98,7 @@ const Alumni = () => {
         <section className="px-4 mb-6 animate-fade-in">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="font-bold text-foreground text-lg">杰出校友</h2>
-              <p className="text-xs text-muted-foreground mt-0.5">优秀校友榜单</p>
+              <h2 className="font-bold text-foreground text-lg">部分校友展示</h2>
             </div>
             <Link to="/alumni/members">
               <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">

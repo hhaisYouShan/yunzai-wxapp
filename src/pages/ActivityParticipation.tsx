@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, MapPin, Clock, QrCode, Plus } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft, Calendar, MapPin, Clock, Users, QrCode } from "lucide-react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
@@ -26,7 +26,6 @@ interface Activity {
 
 const ActivityParticipation = () => {
   const { toast } = useToast();
-  const navigate = useNavigate();
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>(null);
@@ -34,19 +33,17 @@ const ActivityParticipation = () => {
   useEffect(() => {
     const fetchUserAndActivities = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session?.user) {
-        // 如果未登录，重定向到登录页
-        navigate("/auth");
-        return;
-      }
+      setUser(session?.user ?? null);
 
-      setUser(session.user);
-      await fetchActivities(session.user.id);
+      if (session?.user) {
+        await fetchActivities(session.user.id);
+      } else {
+        setLoading(false);
+      }
     };
 
     fetchUserAndActivities();
-  }, [navigate]);
+  }, []);
 
   const fetchActivities = async (userId: string) => {
     try {
@@ -128,32 +125,26 @@ const ActivityParticipation = () => {
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
       <div className="sticky top-0 z-10 bg-gradient-to-br from-primary to-primary-dark text-primary-foreground px-4 py-4 shadow-md">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link to="/profile">
-              <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10">
-                <ArrowLeft className="w-5 h-5" />
-              </Button>
-            </Link>
-            <h1 className="text-lg font-bold">我的活动</h1>
-          </div>
-          {user && (
-            <Button 
-              variant="ghost" 
-              size="sm"
-              onClick={() => navigate("/alumni-activities")}
-              className="text-primary-foreground hover:bg-primary-foreground/10"
-            >
-              <Plus className="w-4 h-4 mr-1" />
-              浏览活动
+        <div className="flex items-center gap-3">
+          <Link to="/profile">
+            <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10">
+              <ArrowLeft className="w-5 h-5" />
             </Button>
-          )}
+          </Link>
+          <h1 className="text-lg font-bold">线下活动参与</h1>
         </div>
       </div>
 
       {/* Content */}
       <div className="p-4">
-        {loading ? (
+        {!user ? (
+          <Card className="p-8 text-center">
+            <p className="text-muted-foreground mb-4">请先登录查看您的活动参与记录</p>
+            <Link to="/auth">
+              <Button>立即登录</Button>
+            </Link>
+          </Card>
+        ) : loading ? (
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
               <Card key={i} className="p-4 animate-pulse">
@@ -165,47 +156,30 @@ const ActivityParticipation = () => {
         ) : activities.length === 0 ? (
           <Card className="p-8 text-center">
             <Calendar className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
-            <p className="text-foreground font-medium mb-2">暂无活动参与记录</p>
-            <p className="text-sm text-muted-foreground mb-6">报名参加线下活动后，记录将显示在这里</p>
-            <Button 
-              onClick={() => navigate("/alumni-activities")}
-              className="w-full max-w-xs"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              去浏览活动
-            </Button>
+            <p className="text-muted-foreground">暂无活动参与记录</p>
+            <p className="text-sm text-muted-foreground mt-2">报名参加活动后，记录将显示在这里</p>
           </Card>
         ) : (
           <div className="space-y-4">
             {activities.map((activity) => (
-              <Card 
-                key={activity.id} 
-                className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
-                onClick={() => navigate(`/alumni-activity/${activity.id}`)}
-              >
+              <Card key={activity.id} className="overflow-hidden">
                 {/* Activity Image */}
                 {activity.image_url && (
-                  <div className="relative h-44 overflow-hidden bg-muted">
+                  <div className="relative h-40 overflow-hidden bg-muted">
                     <img
                       src={activity.image_url}
                       alt={activity.title}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                     <div className="absolute top-3 right-3">
                       {activity.participation_status && getStatusBadge(activity.participation_status)}
-                    </div>
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <h3 className="text-lg font-bold text-white mb-1 line-clamp-2">{activity.title}</h3>
                     </div>
                   </div>
                 )}
 
                 {/* Activity Info */}
                 <div className="p-4">
-                  {!activity.image_url && (
-                    <h3 className="text-lg font-bold text-foreground mb-2">{activity.title}</h3>
-                  )}
+                  <h3 className="text-lg font-bold text-foreground mb-2">{activity.title}</h3>
                   
                   {activity.description && (
                     <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
@@ -253,10 +227,7 @@ const ActivityParticipation = () => {
                   {/* Action Button */}
                   {activity.participation_status === "pending" && activity.status === "upcoming" && (
                     <Button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCheckIn(activity.id);
-                      }}
+                      onClick={() => handleCheckIn(activity.id)}
                       className="w-full mt-4"
                       variant="default"
                     >
@@ -267,19 +238,6 @@ const ActivityParticipation = () => {
                 </div>
               </Card>
             ))}
-            
-            {/* Bottom CTA */}
-            <Card className="p-6 text-center bg-muted/30">
-              <p className="text-sm text-muted-foreground mb-3">发现更多精彩活动</p>
-              <Button 
-                onClick={() => navigate("/alumni-activities")}
-                variant="outline"
-                className="w-full"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                浏览所有活动
-              </Button>
-            </Card>
           </div>
         )}
       </div>

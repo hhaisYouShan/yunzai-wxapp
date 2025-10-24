@@ -183,20 +183,6 @@ const Auth = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="register-code">验证码</Label>
-                  <div className="flex gap-2">
-                    <Input
-                      id="register-code"
-                      type="text"
-                      placeholder="请输入验证码"
-                      required
-                    />
-                    <Button type="button" variant="outline" className="whitespace-nowrap">
-                      获取验证码
-                    </Button>
-                  </div>
-                </div>
-                <div className="space-y-2">
                   <Label htmlFor="register-password">密码</Label>
                   <Input
                     id="register-password"

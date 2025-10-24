@@ -14,7 +14,89 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      activity_participations: {
+        Row: {
+          activity_id: string
+          checked_in_at: string | null
+          id: string
+          registered_at: string | null
+          status: Database["public"]["Enums"]["activity_status"]
+          user_id: string
+        }
+        Insert: {
+          activity_id: string
+          checked_in_at?: string | null
+          id?: string
+          registered_at?: string | null
+          status?: Database["public"]["Enums"]["activity_status"]
+          user_id: string
+        }
+        Update: {
+          activity_id?: string
+          checked_in_at?: string | null
+          id?: string
+          registered_at?: string | null
+          status?: Database["public"]["Enums"]["activity_status"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_participations_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "offline_activities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      offline_activities: {
+        Row: {
+          activity_date: string
+          created_at: string | null
+          description: string | null
+          end_time: string
+          id: string
+          image_url: string | null
+          location: string
+          max_participants: number | null
+          qr_code_secret: string
+          start_time: string
+          status: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          activity_date: string
+          created_at?: string | null
+          description?: string | null
+          end_time: string
+          id?: string
+          image_url?: string | null
+          location: string
+          max_participants?: number | null
+          qr_code_secret: string
+          start_time: string
+          status?: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          activity_date?: string
+          created_at?: string | null
+          description?: string | null
+          end_time?: string
+          id?: string
+          image_url?: string | null
+          location?: string
+          max_participants?: number | null
+          qr_code_secret?: string
+          start_time?: string
+          status?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +105,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      activity_status: "pending" | "checked_in" | "completed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +232,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      activity_status: ["pending", "checked_in", "completed"],
+    },
   },
 } as const

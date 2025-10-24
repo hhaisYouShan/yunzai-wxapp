@@ -97,7 +97,7 @@ const Alumni = () => {
         {/* Alumni Showcase */}
         <section className="px-4 mb-6 animate-fade-in">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-foreground text-lg">部分校友展示</h2>
+            <h2 className="font-bold text-foreground text-lg">杰出校友</h2>
             <Link to="/alumni/members">
               <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">
                 查看全部 <ChevronRight className="w-4 h-4 ml-1" />

@@ -16,7 +16,7 @@ const Home = () => {
 
   const features = [
     { icon: School, label: "学校", color: "text-primary", to: "/teachers" },
-    { icon: GraduationCap, label: "研修班", color: "text-primary", to: "/courses?type=training" },
+    { icon: GraduationCap, label: "研修班", color: "text-primary", to: "/training-programs" },
     { icon: BookOpen, label: "专栏系列", color: "text-accent", to: "/discover" },
     { icon: Users, label: "校友会", color: "text-accent", to: "/alumni" },
   ];
@@ -150,7 +150,7 @@ const Home = () => {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-foreground">直播预告</h2>
           <button 
-            onClick={() => navigate('/courses?type=live')} 
+            onClick={() => navigate('/live-schedule')} 
             className="flex items-center text-sm text-muted-foreground"
           >
             更多 <ChevronRight className="w-4 h-4" />

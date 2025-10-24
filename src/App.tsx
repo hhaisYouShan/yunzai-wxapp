@@ -30,6 +30,8 @@ import NotFound from "./pages/NotFound";
 import VipCourseDetail from "./pages/VipCourseDetail";
 import VipCourseRegister from "./pages/VipCourseRegister";
 import ActivityParticipation from "./pages/ActivityParticipation";
+import TrainingPrograms from "./pages/TrainingPrograms";
+import LiveSchedule from "./pages/LiveSchedule";
 import { BottomNav } from "./components/BottomNav";
 
 const queryClient = new QueryClient();
@@ -64,6 +66,8 @@ const App = () => (
             <Route path="/settings" element={<Settings />} />
             <Route path="/teachers" element={<Teachers />} />
             <Route path="/news" element={<News />} />
+            <Route path="/training-programs" element={<TrainingPrograms />} />
+            <Route path="/live-schedule" element={<LiveSchedule />} />
             <Route path="/vip-course/:id" element={<VipCourseDetail />} />
             <Route path="/vip-course/:id/register" element={<VipCourseRegister />} />
             <Route path="/agreement" element={<Agreement />} />

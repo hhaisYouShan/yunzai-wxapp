@@ -13,11 +13,19 @@ export const BottomNav = () => {
     { icon: User, label: "我的", path: "/profile" },
   ];
 
+  // 检查当前路径是否匹配导航项
+  const isActivePath = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
+  };
+
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border z-50">
       <div className="flex items-center justify-around h-16 max-w-md mx-auto">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.path;
+          const isActive = isActivePath(item.path);
           return (
             <button
               key={item.path}

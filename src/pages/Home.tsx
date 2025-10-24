@@ -129,7 +129,7 @@ const Home = () => {
       <div className="px-4 py-3">
         <Card 
           className="overflow-hidden hover:shadow-lg transition-all cursor-pointer relative"
-          onClick={() => navigate('/vip-course/1/register')}
+          onClick={() => navigate('/vip-course/1')}
         >
           <div className="relative">
             <img
@@ -198,7 +198,7 @@ const Home = () => {
             <Card 
               key={video.id}
               className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
-              onClick={() => navigate(`/courses/${video.id}`)}
+              onClick={() => navigate(`/news/${video.id}`)}
             >
               <div className="relative">
                 <img

@@ -29,6 +29,7 @@ import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import VipCourseDetail from "./pages/VipCourseDetail";
 import VipCourseRegister from "./pages/VipCourseRegister";
+import ActivityParticipation from "./pages/ActivityParticipation";
 import { BottomNav } from "./components/BottomNav";
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/activity-participation" element={<ActivityParticipation />} />
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/teachers" element={<Teachers />} />

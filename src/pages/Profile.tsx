@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, ShoppingBag, Star, Ticket, Phone, MessageSquare, Settings } from "lucide-react";
+import { ChevronRight, ShoppingBag, Star, Ticket, Phone, MessageSquare, Settings, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
@@ -53,6 +53,7 @@ const Profile = () => {
   const menuItems = [
     { icon: ShoppingBag, label: "购买记录", path: "/orders" },
     { icon: Star, label: "收藏记录", path: "/favorites" },
+    { icon: Calendar, label: "线下活动参与", path: "/activity-participation" },
   ];
 
   const actionItems = [
@@ -131,13 +132,13 @@ const Profile = () => {
 
       {/* Quick Actions */}
       <div className="px-4 -mt-5 mb-3">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           {menuItems.map((item) => (
             <Link key={item.label} to={item.path}>
               <Card className="p-4 hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
                   <item.icon className="w-8 h-8 text-primary mb-2" />
-                  <span className="text-sm font-medium text-foreground">{item.label}</span>
+                  <span className="text-xs font-medium text-foreground">{item.label}</span>
                 </div>
               </Card>
             </Link>

@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlayCircle, BookOpen, Users, GraduationCap, ChevronRight, Calendar, Video, School, Briefcase } from "lucide-react";
+import { PlayCircle, BookOpen, Users, GraduationCap, ChevronRight, Calendar, Video, School, Briefcase, Star } from "lucide-react";
 import { CourseCard } from "@/components/CourseCard";
 import logo from "@/assets/logo.png";
+import vipCoursePoster from "@/assets/vip-course-poster.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -122,6 +123,26 @@ const Home = () => {
             </Card>
           ))}
         </div>
+      </div>
+
+      {/* VIP Course Poster */}
+      <div className="px-4 py-3">
+        <Card 
+          className="overflow-hidden hover:shadow-lg transition-all cursor-pointer relative"
+          onClick={() => navigate('/vip-course/1/register')}
+        >
+          <div className="relative">
+            <img
+              src={vipCoursePoster}
+              alt="大咖课"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-3 py-1 rounded-full flex items-center gap-1">
+              <Star className="w-4 h-4" />
+              <span className="text-sm font-semibold">大咖课</span>
+            </div>
+          </div>
+        </Card>
       </div>
 
       {/* Live Preview */}

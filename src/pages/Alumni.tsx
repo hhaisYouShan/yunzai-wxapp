@@ -94,12 +94,10 @@ const Alumni = () => {
           </div>
         </section>
 
-        {/* Outstanding Alumni Ranking */}
+        {/* Alumni Showcase */}
         <section className="px-4 mb-6 animate-fade-in">
           <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2 className="font-bold text-foreground text-lg">部分校友展示</h2>
-            </div>
+            <h2 className="font-bold text-foreground text-lg">部分校友展示</h2>
             <Link to="/alumni/members">
               <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">
                 查看全部 <ChevronRight className="w-4 h-4 ml-1" />
@@ -107,69 +105,48 @@ const Alumni = () => {
             </Link>
           </div>
 
-          <div className="space-y-3">
-            {sampleAlumni.slice(0, 5).map((a, index) => {
-              const rankColors = [
-                { bg: "from-yellow-500/20 to-yellow-600/10", border: "border-yellow-500/40", text: "text-yellow-600", icon: Trophy },
-                { bg: "from-gray-400/20 to-gray-500/10", border: "border-gray-400/40", text: "text-gray-600", icon: Medal },
-                { bg: "from-orange-600/20 to-orange-700/10", border: "border-orange-600/40", text: "text-orange-700", icon: Award },
-                { bg: "from-primary/10 to-primary/5", border: "border-primary/30", text: "text-primary", icon: GraduationCap },
-                { bg: "from-secondary/10 to-secondary/5", border: "border-secondary/30", text: "text-secondary", icon: GraduationCap },
-              ];
-              const rankStyle = rankColors[index];
-              const RankIcon = rankStyle.icon;
-              
-              return (
-                <Card key={a.id} className={`group relative overflow-hidden bg-gradient-to-br ${rankStyle.bg} ${rankStyle.border} border-2 hover:shadow-xl transition-all duration-300`}>
-                  {/* Rank Number */}
-                  <div className="absolute top-3 left-3 z-10">
-                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${rankStyle.bg} border-2 ${rankStyle.border} flex items-center justify-center shadow-lg`}>
-                      <span className={`text-lg font-bold ${rankStyle.text}`}>{index + 1}</span>
+          <div className="grid grid-cols-2 gap-4">
+            {sampleAlumni.slice(0, 4).map((a) => (
+              <Card key={a.id} className="p-4 hover:shadow-lg transition-all duration-300 bg-card border border-border">
+                <div className="text-center">
+                  {/* Avatar with online indicator */}
+                  <div className="relative inline-block mb-3">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center border-2 border-primary/30">
+                      <span className="text-2xl font-bold text-primary">
+                        {a.name.charAt(0)}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-2 border-card" />
+                  </div>
+
+                  {/* Name */}
+                  <h3 className="font-bold text-foreground text-base mb-1">{a.name}</h3>
+                  
+                  {/* Position */}
+                  <p className="text-sm text-muted-foreground mb-2">{a.position}</p>
+                  
+                  {/* Description */}
+                  <div className="space-y-1 mb-3 text-xs text-muted-foreground">
+                    <p className="flex items-center justify-center gap-1">
+                      <Briefcase className="w-3 h-3" />
+                      <span className="truncate">{a.company}</span>
+                    </p>
+                    <p className="flex items-center justify-center gap-1">
+                      <GraduationCap className="w-3 h-3" />
+                      <span>{a.degree}</span>
+                    </p>
+                  </div>
+
+                  {/* Region Tag */}
+                  <div className="flex justify-center">
+                    <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                      <MapPin className="w-3 h-3" />
+                      <span>{a.region}</span>
                     </div>
                   </div>
-
-                  {/* Rank Icon */}
-                  <div className="absolute top-2 right-2 z-10">
-                    <RankIcon className={`w-6 h-6 ${rankStyle.text} opacity-50`} />
-                  </div>
-
-                  <div className="relative p-4 pl-16">
-                    <div className="flex items-start gap-4">
-                      {/* Avatar */}
-                      <div className="relative flex-shrink-0">
-                        <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${rankStyle.bg} border-2 ${rankStyle.border} flex items-center justify-center shadow-md group-hover:scale-105 transition-transform`}>
-                          <span className={`text-2xl font-bold ${rankStyle.text}`}>
-                            {a.name.charAt(0)}
-                          </span>
-                        </div>
-                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-card shadow-sm" />
-                      </div>
-
-                      {/* Info */}
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-foreground text-base mb-1">{a.name}</h3>
-                        <p className={`text-sm font-semibold ${rankStyle.text} mb-2`}>{a.position}</p>
-                        
-                        <div className="space-y-1.5">
-                          <div className="flex items-center gap-2 text-xs">
-                            <GraduationCap className="w-3.5 h-3.5 text-muted-foreground" />
-                            <span className="text-muted-foreground">{a.degree}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-xs">
-                            <Briefcase className="w-3.5 h-3.5 text-muted-foreground" />
-                            <span className="text-muted-foreground truncate">{a.company}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-xs">
-                            <MapPin className="w-3.5 h-3.5 text-muted-foreground" />
-                            <span className="text-muted-foreground">{a.region}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              );
-            })}
+                </div>
+              </Card>
+            ))}
           </div>
 
           {/* Footer CTA */}

@@ -27,6 +27,8 @@ import News from "./pages/News";
 import Agreement from "./pages/Agreement";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
+import VipCourseDetail from "./pages/VipCourseDetail";
+import VipCourseRegister from "./pages/VipCourseRegister";
 import { BottomNav } from "./components/BottomNav";
 
 const queryClient = new QueryClient();
@@ -60,6 +62,8 @@ const App = () => (
             <Route path="/settings" element={<Settings />} />
             <Route path="/teachers" element={<Teachers />} />
             <Route path="/news" element={<News />} />
+            <Route path="/vip-course/:id" element={<VipCourseDetail />} />
+            <Route path="/vip-course/:id/register" element={<VipCourseRegister />} />
             <Route path="/agreement" element={<Agreement />} />
             <Route path="/privacy" element={<Privacy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

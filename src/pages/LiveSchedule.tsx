@@ -142,7 +142,7 @@ const LiveSchedule = () => {
         {filteredClasses.map((liveClass) => (
           <Card 
             key={liveClass.id} 
-            className="overflow-hidden hover:shadow-lg transition-all"
+            className="overflow-hidden hover:shadow-lg transition-all duration-300"
           >
             {/* Image */}
             <div className="relative h-48 cursor-pointer" onClick={() => navigate(`/courses/${liveClass.id}`)}>

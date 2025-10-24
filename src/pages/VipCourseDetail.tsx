@@ -32,10 +32,15 @@ const VipCourseDetail = () => {
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
       <div className="sticky top-0 z-10 bg-background border-b border-border">
-        <div className="flex items-center px-4 py-3">
-          <button onClick={() => navigate(-1)} className="mr-3">
+        <div className="flex items-center px-4 py-3 gap-3">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate(-1)}
+            aria-label="返回"
+          >
             <ArrowLeft className="w-5 h-5" />
-          </button>
+          </Button>
           <h1 className="text-lg font-semibold">大咖课详情</h1>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Bell } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { NewsCard } from "@/components/NewsCard";
 
 const Discover = () => {
@@ -229,10 +230,11 @@ const Discover = () => {
         {/* Tabs */}
         <div className="flex border-b border-border">
           {tabs.map((tab) => (
-            <button
+            <Button
               key={tab.id}
+              variant="ghost"
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 px-4 py-3 text-sm font-medium transition-colors relative ${
+              className={`flex-1 px-4 py-3 text-sm font-medium transition-all duration-300 rounded-none relative ${
                 activeTab === tab.id
                   ? "text-foreground"
                   : "text-muted-foreground"
@@ -240,9 +242,9 @@ const Discover = () => {
             >
               {tab.label}
               {activeTab === tab.id && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary transition-all duration-300" />
               )}
-            </button>
+            </Button>
           ))}
         </div>
       </div>

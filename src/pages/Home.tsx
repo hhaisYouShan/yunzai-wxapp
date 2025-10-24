@@ -115,7 +115,7 @@ const Home = () => {
           {features.map((feature) => (
             <Card 
               key={feature.label} 
-              className="p-4 text-center hover:shadow-md transition-shadow cursor-pointer"
+              className="p-4 text-center hover:shadow-md transition-all duration-300 cursor-pointer hover:scale-105"
               onClick={() => navigate(feature.to)}
             >
               <feature.icon className={`w-8 h-8 mx-auto mb-2 ${feature.color}`} />
@@ -128,7 +128,7 @@ const Home = () => {
       {/* VIP Course Poster */}
       <div className="px-4 py-3">
         <Card 
-          className="overflow-hidden hover:shadow-lg transition-all cursor-pointer relative"
+          className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer relative hover:scale-[1.02]"
           onClick={() => navigate('/vip-course/1')}
         >
           <div className="relative">
@@ -157,7 +157,7 @@ const Home = () => {
           </button>
         </div>
         <Card 
-          className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+          className="overflow-hidden hover:shadow-md transition-all duration-300 cursor-pointer"
           onClick={() => navigate(`/courses/${livePreview.id}`)}
         >
           <div className="relative h-40">
@@ -197,7 +197,7 @@ const Home = () => {
           {hotVideos.map((video) => (
             <Card 
               key={video.id}
-              className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+              className="overflow-hidden hover:shadow-md transition-all duration-300 cursor-pointer"
               onClick={() => navigate(`/news/${video.id}`)}
             >
               <div className="relative">

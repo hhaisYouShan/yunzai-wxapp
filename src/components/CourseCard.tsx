@@ -19,7 +19,7 @@ export const CourseCard = ({ course }: CourseCardProps) => {
 
   return (
     <Card 
-      className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+      className="overflow-hidden hover:shadow-md transition-all duration-300 cursor-pointer"
       onClick={() => navigate(`/courses/${course.id}`)}
     >
       <div className="flex gap-3">

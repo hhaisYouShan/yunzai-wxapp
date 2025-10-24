@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Search, ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TeacherCard } from "@/components/TeacherCard";
 
@@ -64,9 +65,14 @@ const Teachers = () => {
       {/* Header */}
       <div className="sticky top-0 bg-background border-b border-border z-10">
         <div className="px-4 py-3 flex items-center gap-3">
-          <button onClick={() => navigate(-1)}>
-            <ChevronLeft className="w-6 h-6 text-foreground" />
-          </button>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate(-1)}
+            aria-label="返回"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </Button>
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input

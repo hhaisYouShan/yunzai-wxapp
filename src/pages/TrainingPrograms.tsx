@@ -104,11 +104,11 @@ const TrainingPrograms = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "招生中":
-        return "bg-green-500/10 text-green-600 border-green-500/20";
+        return "bg-primary/10 text-primary border-primary/20";
       case "即将开班":
-        return "bg-blue-500/10 text-blue-600 border-blue-500/20";
+        return "bg-accent/10 text-accent-foreground border-accent/20";
       default:
-        return "bg-gray-500/10 text-gray-600 border-gray-500/20";
+        return "bg-muted text-muted-foreground border-border";
     }
   };
 
@@ -143,7 +143,7 @@ const TrainingPrograms = () => {
         {filteredPrograms.map((program) => (
           <Card 
             key={program.id} 
-            className="overflow-hidden hover:shadow-lg transition-all cursor-pointer"
+            className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer"
             onClick={() => navigate(`/courses/${program.id}`)}
           >
             {/* Image */}

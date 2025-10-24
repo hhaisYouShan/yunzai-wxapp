@@ -1,84 +1,85 @@
 import { useState } from "react";
-import { Search, Clock, Calendar, MapPin, Star } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { CourseCard } from "@/components/CourseCard";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 
 const Courses = () => {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("video");
+  const [activeTab, setActiveTab] = useState("degree");
 
   const tabs = [
-    { id: "video", label: "视频课" },
-    { id: "live", label: "直播课" },
-    { id: "vip", label: "大咖课" },
+    { id: "degree", label: "学位班" },
+    { id: "training", label: "研修班" },
+    { id: "popular", label: "热门课程" },
   ];
 
-  // 大咖课海报数据（后台没有发布时为空数组，自动隐藏）
-  const vipCourses = [
+  // 已购买的课程数据
+  const purchasedCourses = [
     {
       id: 1,
-      title: "企业家高峰论坛",
-      speaker: "商界大咖",
-      date: "2025-11-15",
-      time: "14:00-17:00",
-      poster: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800",
-      location: "国际会议中心",
-      requiresRegistration: true,
-    },
-  ];
-
-  const courses = [
-    {
-      id: 1,
-      title: "金融科技与投资管理",
+      title: "清华大学金融MBA学位班",
       teacher: "王教授",
-      price: 3980,
-      students: 156,
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400",
-      type: "video" as const,
+      progress: 35,
+      totalLessons: 48,
+      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400",
+      type: "degree" as const,
+      school: "清华大学",
     },
     {
       id: 2,
-      title: "企业战略与创新管理",
+      title: "北京大学工商管理博士学位班",
       teacher: "李教授",
-      price: 4980,
-      students: 203,
-      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400",
-      type: "live" as const,
+      progress: 20,
+      totalLessons: 60,
+      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400",
+      type: "degree" as const,
+      school: "北京大学",
     },
     {
       id: 3,
-      title: "数字化转型与领导力",
+      title: "企业战略创新高级研修班",
       teacher: "张教授",
-      price: 2980,
-      students: 89,
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400",
-      type: "video" as const,
+      progress: 60,
+      totalLessons: 24,
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400",
+      type: "training" as const,
+      duration: "3个月",
     },
     {
       id: 4,
-      title: "商业模式创新",
+      title: "数字化转型领导力研修班",
       teacher: "刘教授",
-      price: 3580,
-      students: 127,
-      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400",
-      type: "live" as const,
+      progress: 45,
+      totalLessons: 30,
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400",
+      type: "training" as const,
+      duration: "4个月",
+    },
+    {
+      id: 5,
+      title: "金融科技与投资管理",
+      teacher: "赵教授",
+      progress: 80,
+      totalLessons: 32,
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400",
+      type: "popular" as const,
+      price: 3980,
+    },
+    {
+      id: 6,
+      title: "人工智能与商业应用",
+      teacher: "陈教授",
+      progress: 15,
+      totalLessons: 28,
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400",
+      type: "popular" as const,
+      price: 2980,
     },
   ];
 
-  const filteredCourses = courses.filter(c => c.type === activeTab);
-
-  const upcomingLive = {
-    title: "金融科技创新实战",
-    teacher: "王教授",
-    startTime: "2025-10-23 19:00",
-    duration: "2小时",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
-    students: 128,
-  };
+  const filteredCourses = purchasedCourses.filter(c => c.type === activeTab);
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -115,115 +116,63 @@ const Courses = () => {
         </div>
       </div>
 
-      {/* Live Preview */}
-      <div className="px-4 pt-4">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-semibold text-foreground">直播预告</h2>
-          <Badge variant="secondary" className="bg-primary/10 text-primary">即将开始</Badge>
-        </div>
-        <Card className="overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
-          <div className="flex gap-4 p-4">
-            <div className="relative w-32 h-32 flex-shrink-0 rounded-lg overflow-hidden">
-              <img
-                src={upcomingLive.image}
-                alt={upcomingLive.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-2 left-2 right-2">
-                <Badge className="bg-red-500 text-white text-xs">
-                  <Clock className="w-3 h-3 mr-1" />
-                  直播
-                </Badge>
-              </div>
-            </div>
-            <div className="flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="font-semibold text-base text-foreground mb-1 line-clamp-2">
-                  {upcomingLive.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-2">{upcomingLive.teacher}</p>
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>{upcomingLive.startTime}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>时长: {upcomingLive.duration}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between mt-2">
-                <span className="text-xs text-muted-foreground">{upcomingLive.students}人已预约</span>
-                <button className="px-4 py-1.5 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/90 transition-colors">
-                  预约
-                </button>
-              </div>
-            </div>
-          </div>
-        </Card>
-      </div>
-
-      {/* Course List or VIP Courses */}
+      {/* Course List */}
       <div className="px-4 py-4 space-y-3">
-        {activeTab === "vip" ? (
-          vipCourses.length > 0 ? (
-            vipCourses.map((vipCourse) => (
-              <Card 
-                key={vipCourse.id} 
-                className="overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
-                onClick={() => navigate(`/vip-course/${vipCourse.id}`)}
-              >
-                <div className="relative h-48">
+        {filteredCourses.length > 0 ? (
+          filteredCourses.map((course) => (
+            <Card 
+              key={course.id} 
+              className="overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+              onClick={() => navigate(`/courses/${course.id}`)}
+            >
+              <div className="flex gap-4 p-4">
+                <div className="relative w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden">
                   <img
-                    src={vipCourse.poster}
-                    alt={vipCourse.title}
+                    src={course.image}
+                    alt={course.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <Badge className="absolute top-3 left-3 bg-amber-500 text-white">
-                    <Star className="w-3 h-3 mr-1" />
-                    大咖课
-                  </Badge>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                    <h3 className="font-bold text-lg mb-2">{vipCourse.title}</h3>
-                    <p className="text-sm opacity-90 mb-2">{vipCourse.speaker}</p>
-                    <div className="flex items-center gap-4 text-xs">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5" />
-                        <span>{vipCourse.date} {vipCourse.time}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5" />
-                        <span>{vipCourse.location}</span>
-                      </div>
+                </div>
+                <div className="flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-semibold text-base text-foreground mb-1 line-clamp-2">
+                      {course.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-2">{course.teacher}</p>
+                    {course.type === "degree" && course.school && (
+                      <Badge variant="secondary" className="text-xs mb-2">
+                        {course.school}
+                      </Badge>
+                    )}
+                    {course.type === "training" && course.duration && (
+                      <Badge variant="secondary" className="text-xs mb-2">
+                        {course.duration}
+                      </Badge>
+                    )}
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <span>学习进度</span>
+                      <span className="font-medium">{course.progress}%</span>
+                    </div>
+                    <div className="w-full bg-secondary rounded-full h-2 overflow-hidden">
+                      <div 
+                        className="bg-primary h-full transition-all duration-300"
+                        style={{ width: `${course.progress}%` }}
+                      />
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      已学习 {Math.round(course.totalLessons * course.progress / 100)}/{course.totalLessons} 节课
                     </div>
                   </div>
                 </div>
-                <div className="p-4 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20">
-                  <button 
-                    className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg font-medium hover:bg-primary/90 transition-colors"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate(`/vip-course/${vipCourse.id}/register`);
-                    }}
-                  >
-                    立即报名
-                  </button>
-                </div>
-              </Card>
-            ))
-          ) : (
-            <div className="text-center py-16 text-muted-foreground">
-              <Star className="w-16 h-16 mx-auto mb-4 opacity-20" />
-              <p>暂无大咖课程</p>
-            </div>
-          )
-        ) : (
-          filteredCourses.map((course) => (
-            <CourseCard key={course.id} course={course} />
+              </div>
+            </Card>
           ))
+        ) : (
+          <div className="text-center py-16 text-muted-foreground">
+            <p>暂无已购买的课程</p>
+          </div>
         )}
       </div>
     </div>

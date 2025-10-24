@@ -15,7 +15,7 @@ const Home = () => {
   ];
 
   const features = [
-    { icon: School, label: "学校", color: "text-primary", to: "/teachers" },
+    { icon: School, label: "学校", color: "text-primary", to: "/school" },
     { icon: GraduationCap, label: "研修班", color: "text-primary", to: "/training-programs" },
     { icon: BookOpen, label: "专栏系列", color: "text-accent", to: "/discover" },
     { icon: Users, label: "校友会", color: "text-accent", to: "/alumni" },

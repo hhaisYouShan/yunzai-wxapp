@@ -128,8 +128,7 @@ const Home = () => {
       {/* VIP Course Poster */}
       <div className="px-4 py-3">
         <Card 
-          className="overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer relative hover:scale-[1.02]"
-          onClick={() => navigate('/vip-course/1')}
+          className="overflow-hidden hover:shadow-lg transition-all duration-300 relative group"
         >
           <div className="relative">
             <img
@@ -137,9 +136,29 @@ const Home = () => {
               alt="大咖课"
               className="w-full h-auto object-cover"
             />
-            <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-3 py-1 rounded-full flex items-center gap-1">
-              <Star className="w-4 h-4" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute top-3 left-3 bg-amber-500 text-white px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
+              <Star className="w-4 h-4" fill="currentColor" />
               <span className="text-sm font-semibold">大咖课</span>
+            </div>
+            <div className="absolute bottom-4 left-0 right-0 px-4">
+              <h3 className="text-white text-lg font-bold mb-3">企业家高峰论坛</h3>
+              <div className="flex gap-2">
+                <Button 
+                  className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg"
+                  onClick={() => navigate('/vip-course/1/register')}
+                >
+                  <Briefcase className="w-4 h-4 mr-2" />
+                  立即加入
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="flex-1 bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 hover:text-white shadow-lg"
+                  onClick={() => navigate('/vip-course/1')}
+                >
+                  查看详情
+                </Button>
+              </div>
             </div>
           </div>
         </Card>

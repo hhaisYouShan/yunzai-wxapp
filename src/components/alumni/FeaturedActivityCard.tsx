@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin } from "lucide-react";
+import icons from "@/lib/icons";
 
 export interface ActivityItem {
   id: number | string;
@@ -36,11 +36,11 @@ const FeaturedActivityCard = ({ activity, onView }: FeaturedActivityCardProps) =
           <h2 className="font-bold text-base text-foreground mb-1 line-clamp-2">{activity.title}</h2>
           <div className="space-y-1 mb-2 text-xs text-muted-foreground">
             <p className="flex items-center gap-2">
-              <Calendar className="w-3.5 h-3.5 text-primary" />
+              <img src={icons.Calendar} alt="" className="w-3.5 h-3.5" />
               <span>{activity.date}</span>
             </p>
             <p className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-secondary" />
+              <img src={icons.MapPin} alt="" className="w-3.5 h-3.5" />
               <span>{activity.location}</span>
             </p>
           </div>

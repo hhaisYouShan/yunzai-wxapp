@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, MapPin, Briefcase, GraduationCap, Phone, Mail } from "lucide-react";
+import icons from "@/lib/icons";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AlumniRegion = () => {
@@ -90,7 +90,7 @@ const AlumniRegion = () => {
           onClick={() => navigate("/alumni")}
           className="text-primary-foreground hover:bg-primary-foreground/10 mb-4 -ml-2"
         >
-          <ArrowLeft className="w-4 h-4 mr-2" />
+          <img src={icons.ArrowLeft} alt="" className="w-4 h-4 mr-2" />
           返回
         </Button>
         <h1 className="text-2xl font-bold mb-2">{region.name}校友会</h1>
@@ -123,19 +123,19 @@ const AlumniRegion = () => {
                   <h3 className="font-bold text-foreground mb-1">{person.name}</h3>
                   <div className="space-y-1.5 text-sm text-muted-foreground">
                     <p className="flex items-center gap-2">
-                      <GraduationCap className="w-4 h-4 flex-shrink-0 text-primary" />
+                      <img src={icons.GraduationCap} alt="" className="w-4 h-4 flex-shrink-0" />
                       <span className="truncate">{person.degree}</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      <Briefcase className="w-4 h-4 flex-shrink-0 text-secondary" />
+                      <img src={icons.Briefcase} alt="" className="w-4 h-4 flex-shrink-0" />
                       <span className="truncate">{person.company} · {person.position}</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 flex-shrink-0 text-primary" />
+                      <img src={icons.Phone} alt="" className="w-4 h-4 flex-shrink-0" />
                       <span>{person.phone}</span>
                     </p>
                     <p className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 flex-shrink-0 text-secondary" />
+                      <img src={icons.Mail} alt="" className="w-4 h-4 flex-shrink-0" />
                       <span className="truncate">{person.email}</span>
                     </p>
                   </div>

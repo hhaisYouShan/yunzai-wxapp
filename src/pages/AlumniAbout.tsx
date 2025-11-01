@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ChevronLeft, Users, Calendar, Award, TrendingUp } from "lucide-react";
+import icons from "@/lib/icons";
 import logo from "@/assets/logo.png";
 
 const AlumniAbout = () => {
@@ -24,7 +24,7 @@ const AlumniAbout = () => {
             onClick={() => navigate("/alumni")}
             className="hover:bg-primary/10"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <img src={icons.ChevronLeft} alt="" className="w-5 h-5" />
           </Button>
           <h1 className="text-xl font-bold text-foreground">关于校友会</h1>
         </div>

@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Briefcase, GraduationCap, MapPin } from "lucide-react";
+import icons from "@/lib/icons";
 
 export interface AlumniItem {
   id: number | string;
@@ -62,15 +62,15 @@ const AlumniShowcase = ({ alumni }: AlumniShowcaseProps) => {
                 {/* Info Section */}
                 <div className="space-y-2.5">
                   <div className="flex items-start gap-2.5 p-2.5 rounded-lg bg-muted/30 group-hover:bg-muted/50 transition-colors">
-                    <GraduationCap className="w-4 h-4 flex-shrink-0 text-primary mt-0.5" />
+                    <img src={icons.GraduationCap} alt="" className="w-4 h-4 flex-shrink-0 mt-0.5" />
                     <span className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{a.degree}</span>
                   </div>
                   <div className="flex items-start gap-2.5 p-2.5 rounded-lg bg-muted/30 group-hover:bg-muted/50 transition-colors">
-                    <Briefcase className="w-4 h-4 flex-shrink-0 text-secondary mt-0.5" />
+                    <img src={icons.Briefcase} alt="" className="w-4 h-4 flex-shrink-0 mt-0.5" />
                     <span className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{a.company}</span>
                   </div>
                   <div className="flex items-center gap-2.5 p-2.5 rounded-lg bg-muted/30 group-hover:bg-muted/50 transition-colors">
-                    <MapPin className="w-4 h-4 flex-shrink-0 text-primary" />
+                    <img src={icons.MapPin} alt="" className="w-4 h-4 flex-shrink-0" />
                     <span className="text-xs text-muted-foreground">{a.region}</span>
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bell } from "lucide-react";
+import icons from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { NewsCard } from "@/components/NewsCard";
 

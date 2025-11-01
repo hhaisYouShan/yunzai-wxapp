@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft, Calendar, MapPin, Users as UsersIcon } from "lucide-react";
+import icons from "@/lib/icons";
 
 interface Activity {
   id: number;
@@ -105,7 +105,7 @@ const AlumniActivitiesList = () => {
             onClick={() => navigate("/alumni")}
             className="hover:bg-primary/10"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <img src={icons.ChevronLeft} alt="" className="w-5 h-5" />
           </Button>
           <h1 className="text-xl font-bold text-foreground">校友会活动</h1>
         </div>
@@ -144,15 +144,15 @@ const AlumniActivitiesList = () => {
                 
                 <div className="space-y-1.5 text-sm text-muted-foreground mb-3">
                   <p className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-primary" />
+                    <img src={icons.Calendar} alt="" className="w-4 h-4" />
                     <span>{activity.date}</span>
                   </p>
                   <p className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-secondary" />
+                    <img src={icons.MapPin} alt="" className="w-4 h-4" />
                     <span>{activity.location}</span>
                   </p>
                   <p className="flex items-center gap-2">
-                    <UsersIcon className="w-4 h-4 text-primary" />
+                    <img src={icons.Users} alt="" className="w-4 h-4" />
                     <span>{activity.participants}人参与</span>
                   </p>
                 </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, ArrowLeft } from "lucide-react";
+import icons from "@/lib/icons";
 import { toast } from "sonner";
 
 const AlumniApplication = () => {

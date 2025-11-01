@@ -69,6 +69,11 @@ import ticket from "@/assets/icons/ticket.png";
 import moreHorizontal from "@/assets/icons/more-horizontal.png";
 import gripVertical from "@/assets/icons/grip-vertical.png";
 import panelLeft from "@/assets/icons/panel-left.png";
+import helpCircle from "@/assets/icons/help-circle.png";
+import lock from "@/assets/icons/lock.png";
+import globe from "@/assets/icons/globe.png";
+import moon from "@/assets/icons/moon.png";
+import fileText from "@/assets/icons/file-text.png";
 
 // 导出所有图标
 export const icons = {
@@ -142,6 +147,11 @@ export const icons = {
   MoreHorizontal: moreHorizontal,
   GripVertical: gripVertical,
   PanelLeft: panelLeft,
+  HelpCircle: helpCircle,
+  Lock: lock,
+  Globe: globe,
+  Moon: moon,
+  FileText: fileText,
 };
 
 // 默认导出

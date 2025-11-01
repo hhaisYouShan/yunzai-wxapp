@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ChevronLeft, Upload, X } from "lucide-react";
+import icons from "@/lib/icons";
 import { useToast } from "@/hooks/use-toast";
 
 const Feedback = () => {
@@ -45,7 +45,7 @@ const Feedback = () => {
       {/* Header */}
       <div className="sticky top-0 bg-background border-b border-border z-10 px-4 py-3 flex items-center gap-3">
         <button onClick={() => navigate(-1)}>
-          <ChevronLeft className="w-6 h-6 text-foreground" />
+          <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
         </button>
         <h1 className="font-bold text-foreground">问题反馈</h1>
       </div>
@@ -98,7 +98,7 @@ const Feedback = () => {
                       onClick={() => removeImage(index)}
                       className="absolute -top-2 -right-2 w-6 h-6 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center"
                     >
-                      <X className="w-4 h-4" />
+                      <img src={icons.X} alt="" className="w-4 h-4" />
                     </button>
                   </div>
                 ))}
@@ -108,7 +108,7 @@ const Feedback = () => {
                     onClick={handleImageUpload}
                     className="w-20 h-20 border-2 border-dashed border-border rounded-lg flex flex-col items-center justify-center gap-1 hover:border-primary transition-colors"
                   >
-                    <Upload className="w-5 h-5 text-muted-foreground" />
+                    <img src={icons.Upload} alt="" className="w-5 h-5" />
                     <span className="text-xs text-muted-foreground">上传</span>
                   </button>
                 )}

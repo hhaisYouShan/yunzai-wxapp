@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft, Heart, Users } from "lucide-react";
+import icons from "@/lib/icons";
 
 const Favorites = () => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const Favorites = () => {
       {/* Header */}
       <div className="sticky top-0 bg-background border-b border-border z-10 px-4 py-3 flex items-center gap-3">
         <button onClick={() => navigate(-1)}>
-          <ChevronLeft className="w-6 h-6 text-foreground" />
+          <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
         </button>
         <h1 className="font-bold text-foreground">收藏记录</h1>
       </div>
@@ -90,7 +90,7 @@ const Favorites = () => {
             ))}
             {favoriteCourses.length === 0 && (
               <div className="text-center py-12">
-                <Heart className="w-16 h-16 mx-auto text-muted-foreground/50 mb-4" />
+                <img src={icons.Heart} alt="" className="w-16 h-16 mx-auto opacity-50 mb-4" />
                 <p className="text-muted-foreground">暂无收藏的课程</p>
                 <Link to="/courses">
                   <Button variant="outline" className="mt-4">
@@ -124,7 +124,7 @@ const Favorites = () => {
             </div>
             {favoriteTeachers.length === 0 && (
               <div className="text-center py-12">
-                <Users className="w-16 h-16 mx-auto text-muted-foreground/50 mb-4" />
+                <img src={icons.Users} alt="" className="w-16 h-16 mx-auto opacity-50 mb-4" />
                 <p className="text-muted-foreground">暂无收藏的讲师</p>
                 <Link to="/discover">
                   <Button variant="outline" className="mt-4">

@@ -113,4 +113,15 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* 图标透明背景处理 - 移除白色背景 */
+  img[src*="/icons/"] {
+    mix-blend-mode: multiply;
+  }
+  
+  /* 深色模式下的图标处理 */
+  .dark img[src*="/icons/"] {
+    mix-blend-mode: screen;
+    filter: invert(1);
+  }
 }

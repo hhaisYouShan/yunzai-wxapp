@@ -11,9 +11,13 @@ import chevronUp from "@/assets/icons/chevron-up.png";
 
 // 基础图标
 import home from "@/assets/icons/home.png";
+import homeActive from "@/assets/icons/home-active.png";
 import user from "@/assets/icons/user.png";
+import userActive from "@/assets/icons/user-active.png";
 import users from "@/assets/icons/users.png";
+import usersActive from "@/assets/icons/users-active.png";
 import compass from "@/assets/icons/compass.png";
+import compassActive from "@/assets/icons/compass-active.png";
 import search from "@/assets/icons/search.png";
 import bell from "@/assets/icons/bell.png";
 import settings from "@/assets/icons/settings.png";
@@ -54,6 +58,7 @@ import packageIcon from "@/assets/icons/package.png";
 // 教育
 import graduationCap from "@/assets/icons/graduation-cap.png";
 import bookOpen from "@/assets/icons/book-open.png";
+import bookOpenActive from "@/assets/icons/book-open-active.png";
 import school from "@/assets/icons/school.png";
 
 // 奖励和成就
@@ -87,9 +92,13 @@ export const icons = {
   
   // 基础
   Home: home,
+  HomeActive: homeActive,
   User: user,
+  UserActive: userActive,
   Users: users,
+  UsersActive: usersActive,
   Compass: compass,
+  CompassActive: compassActive,
   Search: search,
   Bell: bell,
   Settings: settings,
@@ -132,6 +141,7 @@ export const icons = {
   // 教育
   GraduationCap: graduationCap,
   BookOpen: bookOpen,
+  BookOpenActive: bookOpenActive,
   School: school,
   
   // 奖励

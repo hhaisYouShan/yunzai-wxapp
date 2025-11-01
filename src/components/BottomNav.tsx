@@ -6,11 +6,11 @@ export const BottomNav = () => {
   const navigate = useNavigate();
   
   const navItems = [
-    { icon: icons.Home, label: "首页", path: "/" },
-    { icon: icons.Compass, label: "发现", path: "/discover" },
-    { icon: icons.Users, label: "校友会", path: "/alumni" },
-    { icon: icons.BookOpen, label: "上课", path: "/courses" },
-    { icon: icons.User, label: "我的", path: "/profile" },
+    { icon: icons.Home, iconActive: icons.HomeActive, label: "首页", path: "/" },
+    { icon: icons.Compass, iconActive: icons.CompassActive, label: "发现", path: "/discover" },
+    { icon: icons.Users, iconActive: icons.UsersActive, label: "校友会", path: "/alumni" },
+    { icon: icons.BookOpen, iconActive: icons.BookOpenActive, label: "上课", path: "/courses" },
+    { icon: icons.User, iconActive: icons.UserActive, label: "我的", path: "/profile" },
   ];
 
   // 检查当前路径是否匹配导航项
@@ -33,9 +33,9 @@ export const BottomNav = () => {
               className="flex flex-col items-center justify-center flex-1 h-full"
             >
               <img 
-                src={item.icon}
+                src={isActive ? item.iconActive : item.icon}
                 alt={item.label}
-                className={`w-6 h-6 ${isActive ? "opacity-100" : "opacity-60"}`}
+                className="w-6 h-6"
               />
               <span className={`text-xs mt-1 ${isActive ? "text-primary font-medium" : "text-muted-foreground"}`}>
                 {item.label}

@@ -41,7 +41,7 @@ const AlumniAbout = () => {
         {/* Mission */}
         <Card className="p-6">
           <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-            <Award className="w-5 h-5 text-primary" />
+            <img src={icons.Award} alt="" className="w-5 h-5" />
             我们的使命
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -53,7 +53,7 @@ const AlumniAbout = () => {
         {/* Services */}
         <Card className="p-6">
           <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-            <Users className="w-5 h-5 text-primary" />
+            <img src={icons.Users} alt="" className="w-5 h-5" />
             我们的服务
           </h3>
           <div className="space-y-3">
@@ -91,7 +91,7 @@ const AlumniAbout = () => {
         {/* Statistics */}
         <Card className="p-6">
           <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-primary" />
+            <img src={icons.TrendingUp} alt="" className="w-5 h-5" />
             发展数据
           </h3>
           <div className="grid grid-cols-2 gap-4">
@@ -117,7 +117,7 @@ const AlumniAbout = () => {
         {/* History */}
         <Card className="p-6">
           <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-primary" />
+            <img src={icons.Calendar} alt="" className="w-5 h-5" />
             发展历程
           </h3>
           <div className="space-y-3">

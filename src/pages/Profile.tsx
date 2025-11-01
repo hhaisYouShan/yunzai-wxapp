@@ -51,15 +51,15 @@ const Profile = () => {
   };
 
   const menuItems = [
-    { icon: ShoppingBag, label: "购买记录", path: "/orders" },
-    { icon: Star, label: "收藏记录", path: "/favorites" },
-    { icon: Calendar, label: "线下活动参与", path: "/activity-participation" },
+    { icon: "ShoppingBag", label: "购买记录", path: "/orders" },
+    { icon: "Star", label: "收藏记录", path: "/favorites" },
+    { icon: "Calendar", label: "线下活动参与", path: "/activity-participation" },
   ];
 
   const actionItems = [
-    { icon: Phone, label: "电话咨询", value: "400-885-1955", path: "tel:400-885-1955" },
-    { icon: MessageSquare, label: "问题反馈", path: "/feedback" },
-    { icon: Settings, label: "设置", path: "/settings" },
+    { icon: "Phone", label: "电话咨询", value: "400-885-1955", path: "tel:400-885-1955" },
+    { icon: "MessageSquare", label: "问题反馈", path: "/feedback" },
+    { icon: "Settings", label: "设置", path: "/settings" },
   ];
 
   return (
@@ -137,7 +137,7 @@ const Profile = () => {
             <Link key={item.label} to={item.path}>
               <Card className="p-4 hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
-                  <item.icon className="w-8 h-8 text-primary mb-2" />
+                  <img src={icons[item.icon as keyof typeof icons]} alt="" className="w-8 h-8 mb-2" />
                   <span className="text-xs font-medium text-foreground">{item.label}</span>
                 </div>
               </Card>
@@ -151,10 +151,10 @@ const Profile = () => {
         <Card className="p-4 bg-gradient-to-r from-accent/20 to-secondary/20 border-accent/30">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Ticket className="w-6 h-6 text-accent" />
+              <img src={icons.Ticket} alt="" className="w-6 h-6" />
               <span className="font-medium text-foreground">券码兑换</span>
             </div>
-            <ChevronRight className="w-5 h-5 text-muted-foreground" />
+            <img src={icons.ChevronRight} alt="" className="w-5 h-5" />
           </div>
         </Card>
       </div>
@@ -169,16 +169,16 @@ const Profile = () => {
               className={`flex items-center justify-between p-4 hover:bg-muted/50 transition-colors ${
                 index !== actionItems.length - 1 ? "border-b border-border" : ""
               }`}
-            >
+              >
               <div className="flex items-center gap-3">
-                <item.icon className="w-5 h-5 text-muted-foreground" />
+                <img src={icons[item.icon as keyof typeof icons]} alt="" className="w-5 h-5" />
                 <span className="text-foreground">{item.label}</span>
               </div>
               <div className="flex items-center gap-2">
                 {item.value && (
                   <span className="text-sm text-muted-foreground">{item.value}</span>
                 )}
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <img src={icons.ChevronRight} alt="" className="w-5 h-5" />
               </div>
             </a>
           ) : (
@@ -188,13 +188,13 @@ const Profile = () => {
               className={`flex items-center justify-between p-4 hover:bg-muted/50 transition-colors ${
                 index !== actionItems.length - 1 ? "border-b border-border" : ""
               }`}
-            >
+              >
               <div className="flex items-center gap-3">
-                <item.icon className="w-5 h-5 text-muted-foreground" />
+                <img src={icons[item.icon as keyof typeof icons]} alt="" className="w-5 h-5" />
                 <span className="text-foreground">{item.label}</span>
               </div>
               <div className="flex items-center gap-2">
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <img src={icons.ChevronRight} alt="" className="w-5 h-5" />
               </div>
             </Link>
           )

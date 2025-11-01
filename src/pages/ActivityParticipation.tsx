@@ -128,7 +128,7 @@ const ActivityParticipation = () => {
         <div className="flex items-center gap-3">
           <Link to="/profile">
             <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-primary-foreground/10">
-              <ArrowLeft className="w-5 h-5" />
+              <img src={icons.ArrowLeft} alt="" className="w-5 h-5" />
             </Button>
           </Link>
           <h1 className="text-lg font-bold">线下活动参与</h1>
@@ -155,7 +155,7 @@ const ActivityParticipation = () => {
           </div>
         ) : activities.length === 0 ? (
           <Card className="p-8 text-center">
-            <Calendar className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
+            <img src={icons.Calendar} alt="" className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
             <p className="text-muted-foreground">暂无活动参与记录</p>
             <p className="text-sm text-muted-foreground mt-2">报名参加活动后，记录将显示在这里</p>
           </Card>
@@ -189,17 +189,17 @@ const ActivityParticipation = () => {
 
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Calendar className="w-4 h-4" />
+                      <img src={icons.Calendar} alt="" className="w-4 h-4" />
                       <span>
                         {format(new Date(activity.activity_date), "yyyy年MM月dd日", { locale: zhCN })}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Clock className="w-4 h-4" />
+                      <img src={icons.Clock} alt="" className="w-4 h-4" />
                       <span>{activity.start_time.slice(0, 5)} - {activity.end_time.slice(0, 5)}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="w-4 h-4" />
+                      <img src={icons.MapPin} alt="" className="w-4 h-4" />
                       <span>{activity.location}</span>
                     </div>
                   </div>
@@ -231,7 +231,7 @@ const ActivityParticipation = () => {
                       className="w-full mt-4"
                       variant="default"
                     >
-                      <QrCode className="w-4 h-4 mr-2" />
+                      <img src={icons.QrCode} alt="" className="w-4 h-4 mr-2" />
                       现场扫码签到
                     </Button>
                   )}

@@ -37,7 +37,7 @@ const AlumniApplication = () => {
             onClick={() => navigate("/alumni")}
             className="text-primary-foreground hover:bg-white/10"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <img src={icons.ArrowLeft} alt="" className="w-5 h-5" />
           </Button>
           <div>
             <h1 className="text-xl font-bold">申请加入校友会</h1>
@@ -58,7 +58,7 @@ const AlumniApplication = () => {
                   {avatarPreview ? (
                     <img src={avatarPreview} alt="Avatar preview" className="w-full h-full object-cover" />
                   ) : (
-                    <Upload className="w-10 h-10 text-primary/60" />
+                    <img src={icons.Upload} alt="" className="w-10 h-10 opacity-60" />
                   )}
                 </div>
                 <div className="flex-1">

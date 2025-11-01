@@ -223,7 +223,7 @@ const Discover = () => {
         <div className="flex items-center justify-between px-4 h-14">
           <h1 className="text-xl font-bold text-foreground">发现</h1>
           <button className="p-2">
-            <Bell className="w-5 h-5 text-foreground" />
+            <img src={icons.Bell} alt="" className="w-5 h-5" />
           </button>
         </div>
         

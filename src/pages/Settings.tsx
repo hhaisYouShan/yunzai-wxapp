@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, Bell, Moon, Globe, Lock, FileText, HelpCircle } from "lucide-react";
+import icons from "@/lib/icons";
 import { useToast } from "@/hooks/use-toast";
 
 const Settings = () => {
@@ -17,7 +17,7 @@ const Settings = () => {
       title: "通知设置",
       items: [
         {
-          icon: Bell,
+          icon: "Bell",
           label: "消息通知",
           type: "switch",
           value: notifications,
@@ -29,7 +29,7 @@ const Settings = () => {
       title: "显示设置",
       items: [
         {
-          icon: Moon,
+          icon: "Moon",
           label: "深色模式",
           type: "switch",
           value: darkMode,
@@ -41,13 +41,13 @@ const Settings = () => {
       title: "账号与安全",
       items: [
         {
-          icon: Lock,
+          icon: "Lock",
           label: "修改密码",
           type: "link",
           path: "/change-password",
         },
         {
-          icon: Globe,
+          icon: "Globe",
           label: "语言设置",
           type: "link",
           path: "/language",
@@ -58,19 +58,19 @@ const Settings = () => {
       title: "其他",
       items: [
         {
-          icon: FileText,
+          icon: "FileText",
           label: "用户协议",
           type: "link",
           path: "/agreement",
         },
         {
-          icon: FileText,
+          icon: "FileText",
           label: "隐私政策",
           type: "link",
           path: "/privacy",
         },
         {
-          icon: HelpCircle,
+          icon: "HelpCircle",
           label: "帮助中心",
           type: "link",
           path: "/help",
@@ -91,7 +91,7 @@ const Settings = () => {
       {/* Header */}
       <div className="sticky top-0 bg-background border-b border-border z-10 px-4 py-3 flex items-center gap-3">
         <button onClick={() => navigate(-1)}>
-          <ChevronLeft className="w-6 h-6 text-foreground" />
+          <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
         </button>
         <h1 className="font-bold text-foreground">设置</h1>
       </div>
@@ -111,7 +111,7 @@ const Settings = () => {
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <item.icon className="w-5 h-5 text-muted-foreground" />
+                    <img src={icons[item.icon as keyof typeof icons]} alt="" className="w-5 h-5" />
                     <span className="text-foreground">{item.label}</span>
                   </div>
                   {item.type === "switch" ? (
@@ -124,7 +124,7 @@ const Settings = () => {
                       onClick={() => navigate(item.path!)}
                       className="flex items-center"
                     >
-                      <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                      <img src={icons.ChevronRight} alt="" className="w-5 h-5" />
                     </button>
                   )}
                 </div>

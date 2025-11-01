@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Calendar, Clock, Users, Video, Bell } from "lucide-react";
+import icons from "@/lib/icons";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
@@ -123,7 +123,7 @@ const LiveSchedule = () => {
             onClick={() => navigate(-1)}
             className="text-primary-foreground hover:bg-primary-foreground/10"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <img src={icons.ArrowLeft} alt="" className="w-5 h-5" />
           </Button>
           <h1 className="text-lg font-bold">直播预告</h1>
         </div>
@@ -155,13 +155,13 @@ const LiveSchedule = () => {
               
               {/* Date Badge */}
               <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full flex items-center gap-1">
-                <Calendar className="w-3 h-3" />
+                <img src={icons.Calendar} alt="" className="w-3 h-3" />
                 {liveClass.date} {liveClass.startTime}
               </div>
 
               {/* Viewers Count */}
               <div className="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
-                <Users className="w-3 h-3" />
+                <img src={icons.Users} alt="" className="w-3 h-3" />
                 {liveClass.viewers}人{activeTab === "upcoming" ? "预约" : "观看"}
               </div>
 
@@ -169,7 +169,7 @@ const LiveSchedule = () => {
               {activeTab === "past" && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
-                    <Video className="w-8 h-8 text-primary" />
+                    <img src={icons.Video} alt="" className="w-8 h-8" />
                   </div>
                 </div>
               )}
@@ -192,7 +192,7 @@ const LiveSchedule = () => {
               <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                 <span className="font-medium text-foreground">{liveClass.instructor}</span>
                 <span className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
+                  <img src={icons.Clock} alt="" className="w-4 h-4" />
                   {liveClass.duration}
                 </span>
               </div>
@@ -203,7 +203,7 @@ const LiveSchedule = () => {
                   className="w-full"
                   onClick={() => handleSubscribe(liveClass.id, liveClass.title)}
                 >
-                  <Bell className="w-4 h-4 mr-2" />
+                  <img src={icons.Bell} alt="" className="w-4 h-4 mr-2" />
                   立即预约
                 </Button>
               ) : (
@@ -212,7 +212,7 @@ const LiveSchedule = () => {
                   className="w-full"
                   onClick={() => handleWatchReplay(liveClass.id)}
                 >
-                  <Video className="w-4 h-4 mr-2" />
+                  <img src={icons.Video} alt="" className="w-4 h-4 mr-2" />
                   观看回放
                 </Button>
               )}
@@ -222,7 +222,7 @@ const LiveSchedule = () => {
 
         {filteredClasses.length === 0 && (
           <div className="text-center py-12">
-            <Video className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
+            <img src={icons.Video} alt="" className="w-16 h-16 mx-auto mb-4 opacity-50" />
             <p className="text-muted-foreground">
               {activeTab === "upcoming" ? "暂无即将直播的课程" : "暂无往期回放"}
             </p>

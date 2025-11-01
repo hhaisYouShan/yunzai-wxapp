@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Calendar, MapPin, Clock, Users, Star } from "lucide-react";
+import icons from "@/lib/icons";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -39,7 +39,7 @@ const VipCourseDetail = () => {
             onClick={() => navigate(-1)}
             aria-label="返回"
           >
-            <ArrowLeft className="w-5 h-5" />
+            <img src={icons.ArrowLeft} alt="" className="w-5 h-5" />
           </Button>
           <h1 className="text-lg font-semibold">大咖课详情</h1>
         </div>
@@ -54,7 +54,7 @@ const VipCourseDetail = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
         <Badge className="absolute top-4 left-4 bg-amber-500 text-white">
-          <Star className="w-3 h-3 mr-1" />
+          <img src={icons.Star} alt="" className="w-3 h-3 mr-1" />
           大咖课
         </Badge>
         <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
@@ -68,21 +68,21 @@ const VipCourseDetail = () => {
         {/* Basic Info */}
         <Card className="p-4 space-y-3">
           <div className="flex items-center gap-3">
-            <Calendar className="w-5 h-5 text-primary" />
+            <img src={icons.Calendar} alt="" className="w-5 h-5" />
             <div>
               <p className="text-sm text-muted-foreground">时间</p>
               <p className="font-medium">{vipCourse.date} {vipCourse.time}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <MapPin className="w-5 h-5 text-primary" />
+            <img src={icons.MapPin} alt="" className="w-5 h-5" />
             <div>
               <p className="text-sm text-muted-foreground">地点</p>
               <p className="font-medium">{vipCourse.location}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Users className="w-5 h-5 text-primary" />
+            <img src={icons.Users} alt="" className="w-5 h-5" />
             <div>
               <p className="text-sm text-muted-foreground">报名人数</p>
               <p className="font-medium">{vipCourse.registered}/{vipCourse.maxCapacity}人</p>
@@ -105,7 +105,7 @@ const VipCourseDetail = () => {
             {vipCourse.agenda.map((item, index) => (
               <div key={index} className="flex gap-3">
                 <div className="flex-shrink-0">
-                  <Clock className="w-4 h-4 text-primary mt-0.5" />
+                  <img src={icons.Clock} alt="" className="w-4 h-4 mt-0.5" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{item.time}</p>
@@ -125,7 +125,7 @@ const VipCourseDetail = () => {
             size="lg"
             onClick={() => navigate(`/vip-course/${id}/register`)}
           >
-            <Star className="w-5 h-5 mr-2" fill="currentColor" />
+            <img src={icons.Star} alt="" className="w-5 h-5 mr-2" />
             立即加入
           </Button>
         </div>

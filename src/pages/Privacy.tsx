@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft } from "lucide-react";
+import icons from "@/lib/icons";
 import { Card } from "@/components/ui/card";
 
 const Privacy = () => {
@@ -10,7 +10,7 @@ const Privacy = () => {
       {/* Header */}
       <div className="sticky top-0 bg-background border-b border-border z-10 px-4 py-3 flex items-center gap-3">
         <button onClick={() => navigate(-1)}>
-          <ChevronLeft className="w-6 h-6 text-foreground" />
+          <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
         </button>
         <h1 className="font-bold text-foreground">隐私政策</h1>
       </div>

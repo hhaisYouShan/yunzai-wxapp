@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft, Package } from "lucide-react";
+import icons from "@/lib/icons";
 
 const Orders = () => {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ const Orders = () => {
       {/* Header */}
       <div className="sticky top-0 bg-background border-b border-border z-10 px-4 py-3 flex items-center gap-3">
         <button onClick={() => navigate(-1)}>
-          <ChevronLeft className="w-6 h-6 text-foreground" />
+          <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
         </button>
         <h1 className="font-bold text-foreground">购买记录</h1>
       </div>
@@ -165,7 +165,7 @@ const Orders = () => {
 
         {orders.length === 0 && (
           <div className="text-center py-12">
-            <Package className="w-16 h-16 mx-auto text-muted-foreground/50 mb-4" />
+            <img src={icons.Package} alt="" className="w-16 h-16 mx-auto opacity-50 mb-4" />
             <p className="text-muted-foreground">暂无购买记录</p>
           </div>
         )}

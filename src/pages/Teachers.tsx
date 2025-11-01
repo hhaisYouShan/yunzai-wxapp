@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, ChevronLeft } from "lucide-react";
+import icons from "@/lib/icons";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -71,10 +71,10 @@ const Teachers = () => {
             onClick={() => navigate(-1)}
             aria-label="返回"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
           </Button>
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <img src={icons.Search} alt="" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" />
             <Input
               placeholder="搜索讲师"
               className="pl-10"

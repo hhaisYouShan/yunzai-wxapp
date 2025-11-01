@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, ChevronLeft } from "lucide-react";
+import icons from "@/lib/icons";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { NewsCard } from "@/components/NewsCard";
@@ -161,10 +161,10 @@ const News = () => {
       <div className="sticky top-0 bg-background border-b border-border z-10">
         <div className="px-4 py-3 flex items-center gap-3">
           <button onClick={() => navigate(-1)}>
-            <ChevronLeft className="w-6 h-6 text-foreground" />
+            <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
           </button>
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <img src={icons.Search} alt="" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" />
             <Input
               placeholder="搜索资讯"
               className="pl-10"

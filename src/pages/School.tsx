@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import icons from "@/lib/icons";
+import { ArrowLeft, MapPin, Phone, Mail, GraduationCap, Users, Award, Building, BookOpen, Star } from "lucide-react";
 
 const School = () => {
   const navigate = useNavigate();
@@ -36,25 +36,25 @@ const School = () => {
 
   const programs = [
     {
-      icon: "GraduationCap",
+      icon: GraduationCap,
       title: "学位教育",
       description: "与国内外知名高校合作，提供博士、硕士学位课程",
       color: "text-primary",
     },
     {
-      icon: "BookOpen",
+      icon: BookOpen,
       title: "高级研修",
       description: "面向企业家和高管的系统化研修课程",
       color: "text-accent",
     },
     {
-      icon: "Users",
+      icon: Users,
       title: "专题培训",
       description: "聚焦行业热点的短期专题培训项目",
       color: "text-primary",
     },
     {
-      icon: "Award",
+      icon: Award,
       title: "定制课程",
       description: "为企业量身定制的内训和咨询服务",
       color: "text-accent",
@@ -79,7 +79,7 @@ const School = () => {
             onClick={() => navigate(-1)}
             className="text-primary-foreground hover:bg-primary-foreground/10"
           >
-            <img src={icons.ArrowLeft} alt="" className="w-5 h-5" />
+            <ArrowLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-lg font-bold">国研在线</h1>
         </div>
@@ -104,7 +104,7 @@ const School = () => {
       <div className="px-4 py-6">
         <Card className="p-5">
           <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
-            <img src={icons.Building} alt="" className="w-5 h-5" />
+            <Building className="w-5 h-5 text-primary" />
             学校简介
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">
@@ -142,7 +142,7 @@ const School = () => {
                 else navigate('/discover');
               }}
             >
-              <img src={icons[program.icon as keyof typeof icons]} alt="" className={`w-8 h-8 mb-3`} />
+              <program.icon className={`w-8 h-8 mb-3 ${program.color}`} />
               <h4 className="font-semibold mb-2">{program.title}</h4>
               <p className="text-xs text-muted-foreground">{program.description}</p>
             </Card>
@@ -175,11 +175,11 @@ const School = () => {
               </div>
               <div className="p-4 space-y-3">
                 <div className="flex items-start gap-2">
-                  <img src={icons.MapPin} alt="" className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-foreground">{campus.address}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <img src={icons.Phone} alt="" className="w-4 h-4" />
+                  <Phone className="w-4 h-4 text-primary" />
                   <p className="text-sm text-muted-foreground">{campus.phone}</p>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-2 border-t border-border">
@@ -199,16 +199,16 @@ const School = () => {
       <div className="px-4 pb-6">
         <Card className="p-5 bg-gradient-to-br from-primary/5 to-accent/5">
           <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-            <img src={icons.Mail} alt="" className="w-5 h-5" />
+            <Mail className="w-5 h-5 text-primary" />
             联系我们
           </h3>
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <img src={icons.Phone} alt="" className="w-4 h-4" />
+              <Phone className="w-4 h-4 text-primary" />
               <span className="text-sm text-foreground">全国咨询热线: 400-888-8888</span>
             </div>
             <div className="flex items-center gap-3">
-              <img src={icons.Mail} alt="" className="w-4 h-4" />
+              <Mail className="w-4 h-4 text-primary" />
               <span className="text-sm text-foreground">邮箱: info@guoyanzaixian.com</span>
             </div>
           </div>

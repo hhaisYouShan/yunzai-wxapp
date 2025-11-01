@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import icons from "@/lib/icons";
+import { ArrowLeft, Clock, Users, MapPin, Calendar, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const TrainingPrograms = () => {
@@ -123,7 +123,7 @@ const TrainingPrograms = () => {
             onClick={() => navigate(-1)}
             className="text-primary-foreground hover:bg-primary-foreground/10"
           >
-            <img src={icons.ArrowLeft} alt="" className="w-5 h-5" />
+            <ArrowLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-lg font-bold">研修班</h1>
         </div>
@@ -178,19 +178,19 @@ const TrainingPrograms = () => {
               {/* Info Grid */}
               <div className="grid grid-cols-2 gap-2 mb-4">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <img src={icons.Clock} alt="" className="w-4 h-4" />
+                  <Clock className="w-4 h-4" />
                   <span>{program.duration}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <img src={icons.Calendar} alt="" className="w-4 h-4" />
+                  <Calendar className="w-4 h-4" />
                   <span>{program.schedule}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <img src={icons.MapPin} alt="" className="w-4 h-4" />
+                  <MapPin className="w-4 h-4" />
                   <span>{program.location}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <img src={icons.Users} alt="" className="w-4 h-4" />
+                  <Users className="w-4 h-4" />
                   <span>{program.students}/{program.maxStudents}人</span>
                 </div>
               </div>
@@ -198,7 +198,7 @@ const TrainingPrograms = () => {
               {/* Highlights */}
               <div className="mb-4">
                 <div className="flex items-center gap-2 mb-2">
-                  <img src={icons.Star} alt="" className="w-4 h-4" />
+                  <Star className="w-4 h-4 text-primary" />
                   <span className="text-sm font-semibold text-foreground">课程亮点</span>
                 </div>
                 <div className="flex flex-wrap gap-2">

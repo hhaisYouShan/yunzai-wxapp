@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import icons from "@/lib/icons";
+import { ChevronLeft, Calendar, Eye, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NewsDetail = () => {
@@ -50,12 +50,12 @@ const NewsDetail = () => {
       <div className="sticky top-0 bg-background border-b border-border z-10 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button onClick={() => navigate(-1)}>
-            <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
+            <ChevronLeft className="w-6 h-6 text-foreground" />
           </button>
           <h1 className="font-bold text-foreground">资讯详情</h1>
         </div>
         <Button variant="ghost" size="icon">
-          <img src={icons.Share2} alt="" className="w-5 h-5" />
+          <Share2 className="w-5 h-5" />
         </Button>
       </div>
 
@@ -76,11 +76,11 @@ const NewsDetail = () => {
             {news.category}
           </span>
           <span className="flex items-center gap-1">
-            <img src={icons.Calendar} alt="" className="w-4 h-4" />
+            <Calendar className="w-4 h-4" />
             {news.date}
           </span>
           <span className="flex items-center gap-1">
-            <img src={icons.Eye} alt="" className="w-4 h-4" />
+            <Eye className="w-4 h-4" />
             {news.views}
           </span>
         </div>

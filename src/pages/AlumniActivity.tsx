@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import icons from "@/lib/icons";
+import { ArrowLeft, Calendar, MapPin, Users, Clock } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AlumniActivity = () => {
@@ -139,7 +139,7 @@ const AlumniActivity = () => {
           onClick={() => navigate("/alumni")}
           className="absolute top-4 left-4 text-primary-foreground bg-background/50 backdrop-blur-sm hover:bg-background/70"
         >
-          <img src={icons.ArrowLeft} alt="" className="w-4 h-4 mr-2" />
+          <ArrowLeft className="w-4 h-4 mr-2" />
           返回
         </Button>
       </div>
@@ -152,17 +152,17 @@ const AlumniActivity = () => {
           <div className="space-y-3 mb-4">
             <div className="flex items-center gap-3 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">
-                <img src={icons.Calendar} alt="" className="w-4 h-4" />
+                <Calendar className="w-4 h-4 text-primary" />
                 <span>{activity.date}</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
-                <img src={icons.Clock} alt="" className="w-4 h-4" />
+                <Clock className="w-4 h-4 text-secondary" />
                 <span>{activity.time}</span>
               </div>
             </div>
             
             <div className="flex items-start gap-2 text-sm text-muted-foreground">
-              <img src={icons.MapPin} alt="" className="w-4 h-4 flex-shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-medium text-foreground">{activity.location}</p>
                 <p className="text-xs">{activity.address}</p>
@@ -170,7 +170,7 @@ const AlumniActivity = () => {
             </div>
 
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <img src={icons.Users} alt="" className="w-4 h-4" />
+              <Users className="w-4 h-4 text-secondary" />
               <span>{activity.participants}人已报名</span>
             </div>
           </div>

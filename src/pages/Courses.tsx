@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
-import icons from "@/lib/icons";
 
 const Courses = () => {
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ const Courses = () => {
       <div className="sticky top-0 bg-background border-b border-border z-10">
         <div className="px-4 py-3">
           <div className="relative">
-            <img src={icons.Search} alt="" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               placeholder="搜索课程"
               className="pl-10"

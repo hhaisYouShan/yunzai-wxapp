@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import icons from "@/lib/icons";
+import { ArrowLeft, Search, TrendingUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { CourseCard } from "@/components/CourseCard";
 
@@ -170,17 +170,17 @@ const HotCourses = () => {
               onClick={() => navigate(-1)}
               className="text-primary-foreground hover:bg-primary-foreground/10"
             >
-              <img src={icons.ArrowLeft} alt="" className="w-5 h-5" />
+              <ArrowLeft className="w-5 h-5" />
             </Button>
             <div className="flex items-center gap-2">
-              <img src={icons.TrendingUp} alt="" className="w-5 h-5" />
+              <TrendingUp className="w-5 h-5" />
               <h1 className="text-lg font-bold">热门课程</h1>
             </div>
           </div>
 
           {/* Search Bar */}
           <div className="relative mb-4">
-            <img src={icons.Search} alt="" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               placeholder="搜索课程或讲师"
               className="pl-10 bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
@@ -233,7 +233,7 @@ const HotCourses = () => {
 
         {sortedCourses.length === 0 && (
           <div className="text-center py-12">
-            <img src={icons.TrendingUp} alt="" className="w-16 h-16 mx-auto mb-4 opacity-50" />
+            <TrendingUp className="w-16 h-16 text-muted-foreground mx-auto mb-4 opacity-50" />
             <p className="text-muted-foreground">未找到相关课程</p>
           </div>
         )}

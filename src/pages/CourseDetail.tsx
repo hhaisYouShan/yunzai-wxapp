@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import icons from "@/lib/icons";
+import { ChevronLeft, Clock, Users, BookOpen, Play } from "lucide-react";
 
 const CourseDetail = () => {
   const { id } = useParams();
@@ -33,7 +33,7 @@ const CourseDetail = () => {
       {/* Header */}
       <div className="sticky top-0 bg-background border-b border-border z-10 px-4 py-3 flex items-center gap-3">
         <button onClick={() => navigate(-1)}>
-          <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
+          <ChevronLeft className="w-6 h-6 text-foreground" />
         </button>
         <h1 className="font-bold text-foreground">课程详情</h1>
       </div>
@@ -54,11 +54,11 @@ const CourseDetail = () => {
           <h2 className="text-xl font-bold text-foreground mb-2">{course.title}</h2>
           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
             <span className="flex items-center gap-1">
-              <img src={icons.Users} alt="" className="w-4 h-4" />
+              <Users className="w-4 h-4" />
               {course.students}人学习
             </span>
             <span className="flex items-center gap-1">
-              <img src={icons.Clock} alt="" className="w-4 h-4" />
+              <Clock className="w-4 h-4" />
               {course.duration}
             </span>
           </div>
@@ -107,14 +107,14 @@ const CourseDetail = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <img src={icons.BookOpen} alt="" className="w-5 h-5" />
+                        <BookOpen className="w-5 h-5 text-primary" />
                       </div>
                       <div>
                         <p className="font-medium text-foreground">{chapter.title}</p>
                         <p className="text-sm text-muted-foreground">{chapter.lessons}节课</p>
                       </div>
                     </div>
-                    <img src={icons.Play} alt="" className="w-5 h-5" />
+                    <Play className="w-5 h-5 text-muted-foreground" />
                   </div>
                 </Card>
               ))}

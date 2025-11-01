@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import icons from "@/lib/icons";
+import { ChevronLeft, Search, Briefcase, GraduationCap, MapPin } from "lucide-react";
 import type { AlumniItem } from "@/components/alumni/AlumniShowcase";
 
 const AlumniMembers = () => {
@@ -44,14 +44,14 @@ const AlumniMembers = () => {
             onClick={() => navigate("/alumni")}
             className="hover:bg-primary/10"
           >
-            <img src={icons.ChevronLeft} alt="" className="w-5 h-5" />
+            <ChevronLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-xl font-bold text-foreground">校友展示</h1>
         </div>
         
         {/* Search */}
         <div className="relative">
-          <img src={icons.Search} alt="" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             type="text"
             placeholder="搜索校友姓名、学位或地区..."
@@ -87,15 +87,15 @@ const AlumniMembers = () => {
               
               <div className="space-y-2 text-sm text-muted-foreground">
                 <p className="flex items-center gap-2">
-                  <img src={icons.GraduationCap} alt="" className="w-4 h-4 flex-shrink-0" />
+                  <GraduationCap className="w-4 h-4 flex-shrink-0 text-primary" />
                   <span className="truncate">{alumni.degree}</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <img src={icons.Briefcase} alt="" className="w-4 h-4 flex-shrink-0" />
+                  <Briefcase className="w-4 h-4 flex-shrink-0 text-secondary" />
                   <span className="truncate">{alumni.company}</span>
                 </p>
                 <p className="flex items-center gap-2">
-                  <img src={icons.MapPin} alt="" className="w-4 h-4 flex-shrink-0" />
+                  <MapPin className="w-4 h-4 flex-shrink-0 text-primary" />
                   <span>{alumni.region}</span>
                 </p>
               </div>

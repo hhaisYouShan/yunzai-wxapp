@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import icons from "@/lib/icons";
+import { Calendar, MapPin, Users as UsersIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { ActivityItem } from "./FeaturedActivityCard";
 
@@ -26,15 +26,15 @@ const ActivitiesList = ({ activities }: ActivitiesListProps) => {
                 <h3 className="font-bold text-foreground mb-2 line-clamp-1">{activity.title}</h3>
                 <div className="space-y-1.5 text-xs text-muted-foreground mb-3">
                   <p className="flex items-center gap-1.5">
-                    <img src={icons.Calendar} alt="" className="w-3.5 h-3.5" />
+                    <Calendar className="w-3.5 h-3.5 text-primary" />
                     <span>{activity.date}</span>
                   </p>
                   <p className="flex items-center gap-1.5">
-                    <img src={icons.MapPin} alt="" className="w-3.5 h-3.5" />
+                    <MapPin className="w-3.5 h-3.5 text-secondary" />
                     <span>{activity.location}</span>
                   </p>
                   <p className="flex items-center gap-1.5">
-                    <img src={icons.Users} alt="" className="w-3.5 h-3.5" />
+                    <UsersIcon className="w-3.5 h-3.5 text-primary" />
                     <span>{activity.participants}人参与</span>
                   </p>
                 </div>

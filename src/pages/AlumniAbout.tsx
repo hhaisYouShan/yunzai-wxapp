@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import icons from "@/lib/icons";
+import { ChevronLeft, Users, Calendar, Award, TrendingUp } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const AlumniAbout = () => {
@@ -24,7 +24,7 @@ const AlumniAbout = () => {
             onClick={() => navigate("/alumni")}
             className="hover:bg-primary/10"
           >
-            <img src={icons.ChevronLeft} alt="" className="w-5 h-5" />
+            <ChevronLeft className="w-5 h-5" />
           </Button>
           <h1 className="text-xl font-bold text-foreground">关于校友会</h1>
         </div>
@@ -41,7 +41,7 @@ const AlumniAbout = () => {
         {/* Mission */}
         <Card className="p-6">
           <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-            <img src={icons.Award} alt="" className="w-5 h-5" />
+            <Award className="w-5 h-5 text-primary" />
             我们的使命
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -53,7 +53,7 @@ const AlumniAbout = () => {
         {/* Services */}
         <Card className="p-6">
           <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-            <img src={icons.Users} alt="" className="w-5 h-5" />
+            <Users className="w-5 h-5 text-primary" />
             我们的服务
           </h3>
           <div className="space-y-3">
@@ -91,7 +91,7 @@ const AlumniAbout = () => {
         {/* Statistics */}
         <Card className="p-6">
           <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
-            <img src={icons.TrendingUp} alt="" className="w-5 h-5" />
+            <TrendingUp className="w-5 h-5 text-primary" />
             发展数据
           </h3>
           <div className="grid grid-cols-2 gap-4">
@@ -117,7 +117,7 @@ const AlumniAbout = () => {
         {/* History */}
         <Card className="p-6">
           <h3 className="font-bold text-foreground mb-3 flex items-center gap-2">
-            <img src={icons.Calendar} alt="" className="w-5 h-5" />
+            <Calendar className="w-5 h-5 text-primary" />
             发展历程
           </h3>
           <div className="space-y-3">

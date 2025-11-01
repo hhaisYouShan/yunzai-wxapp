@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import icons from "@/lib/icons";
+import { ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,7 +36,7 @@ const VipCourseRegister = () => {
       <div className="sticky top-0 z-10 bg-background border-b border-border">
         <div className="flex items-center px-4 py-3">
           <button onClick={() => navigate(-1)} className="mr-3">
-            <img src={icons.ArrowLeft} alt="" className="w-5 h-5" />
+            <ArrowLeft className="w-5 h-5" />
           </button>
           <h1 className="text-lg font-semibold">大咖课报名</h1>
         </div>

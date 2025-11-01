@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { CourseCard } from "@/components/CourseCard";
-import icons from "@/lib/icons";
+import { ChevronLeft, GraduationCap, Award, BookOpen } from "lucide-react";
 
 const TeacherDetail = () => {
   const { id } = useParams();
@@ -48,7 +48,7 @@ const TeacherDetail = () => {
       {/* Header */}
       <div className="sticky top-0 bg-background border-b border-border z-10 px-4 py-3 flex items-center gap-3">
         <button onClick={() => navigate(-1)}>
-          <img src={icons.ChevronLeft} alt="" className="w-6 h-6" />
+          <ChevronLeft className="w-6 h-6 text-foreground" />
         </button>
         <h1 className="font-bold text-foreground">讲师详情</h1>
       </div>
@@ -84,14 +84,14 @@ const TeacherDetail = () => {
         {/* Education */}
         <Card className="p-4 -mt-6 mb-4 relative z-10">
           <div className="flex items-start gap-3 mb-4">
-            <img src={icons.GraduationCap} alt="" className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <GraduationCap className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="font-bold text-foreground mb-1">教育背景</h3>
               <p className="text-sm text-muted-foreground">{teacher.education}</p>
             </div>
           </div>
           <div className="flex items-start gap-3">
-            <img src={icons.BookOpen} alt="" className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <BookOpen className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="font-bold text-foreground mb-1">工作经历</h3>
               <p className="text-sm text-muted-foreground">{teacher.experience}</p>
@@ -102,7 +102,7 @@ const TeacherDetail = () => {
         {/* Achievements */}
         <Card className="p-4 mb-4">
           <div className="flex items-center gap-2 mb-3">
-            <img src={icons.Award} alt="" className="w-5 h-5" />
+            <Award className="w-5 h-5 text-primary" />
             <h3 className="font-bold text-foreground">主要成就</h3>
           </div>
           <ul className="space-y-2">

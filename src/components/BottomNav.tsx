@@ -1,16 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import icons from "@/lib/icons";
+import { Home, Compass, BookOpen, User, Users } from "lucide-react";
 
 export const BottomNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
   const navItems = [
-    { icon: icons.Home, iconActive: icons.HomeActive, label: "首页", path: "/" },
-    { icon: icons.Compass, iconActive: icons.CompassActive, label: "发现", path: "/discover" },
-    { icon: icons.Users, iconActive: icons.UsersActive, label: "校友会", path: "/alumni" },
-    { icon: icons.BookOpen, iconActive: icons.BookOpenActive, label: "上课", path: "/courses" },
-    { icon: icons.User, iconActive: icons.UserActive, label: "我的", path: "/profile" },
+    { icon: Home, label: "首页", path: "/" },
+    { icon: Compass, label: "发现", path: "/discover" },
+    { icon: Users, label: "校友会", path: "/alumni" },
+    { icon: BookOpen, label: "上课", path: "/courses" },
+    { icon: User, label: "我的", path: "/profile" },
   ];
 
   // 检查当前路径是否匹配导航项
@@ -32,10 +32,8 @@ export const BottomNav = () => {
               onClick={() => navigate(item.path)}
               className="flex flex-col items-center justify-center flex-1 h-full"
             >
-              <img 
-                src={isActive ? item.iconActive : item.icon}
-                alt={item.label}
-                className="w-6 h-6"
+              <item.icon 
+                className={`w-6 h-6 ${isActive ? "text-primary" : "text-muted-foreground"}`}
               />
               <span className={`text-xs mt-1 ${isActive ? "text-primary font-medium" : "text-muted-foreground"}`}>
                 {item.label}

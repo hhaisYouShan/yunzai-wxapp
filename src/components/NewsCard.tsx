@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
-import { ThumbsUp, MessageCircle, TrendingUp } from "lucide-react";
+import icons from "@/lib/icons";
 
 interface NewsCardProps {
   news: {
@@ -36,7 +36,7 @@ export const NewsCard = ({ news, isHot = false }: NewsCardProps) => {
       {/* Hot Badge */}
       {isHot && (
         <div className="absolute top-2 right-2 z-10 bg-red-500 text-white text-xs px-2 py-1 rounded-md flex items-center gap-1 shadow-lg">
-          <TrendingUp className="w-3 h-3" />
+          <img src={icons.TrendingUp} alt="" className="w-3 h-3" />
           热门
         </div>
       )}
@@ -67,11 +67,11 @@ export const NewsCard = ({ news, isHot = false }: NewsCardProps) => {
         {/* Footer Actions */}
         <div className="flex items-center gap-4 text-xs text-muted-foreground pt-1">
           <button className="flex items-center gap-1 hover:text-primary transition-colors">
-            <ThumbsUp className="w-3.5 h-3.5" />
+            <img src={icons.ThumbsUp} alt="" className="w-3.5 h-3.5" />
             <span>{Math.floor(news.views / 10)}</span>
           </button>
           <button className="flex items-center gap-1 hover:text-primary transition-colors">
-            <MessageCircle className="w-3.5 h-3.5" />
+            <img src={icons.MessageCircle} alt="" className="w-3.5 h-3.5" />
             <span>{Math.floor(news.views / 20)}</span>
           </button>
         </div>

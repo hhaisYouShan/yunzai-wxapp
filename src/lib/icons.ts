@@ -2,78 +2,78 @@
 // 用于替换lucide-react图标，支持微信小程序
 
 // 导航和箭头类
-import arrowLeft from "@/assets/icons/arrow-left.png";
-import arrowRight from "@/assets/icons/arrow-right.png";
-import chevronLeft from "@/assets/icons/chevron-left.png";
-import chevronRight from "@/assets/icons/chevron-right.png";
-import chevronDown from "@/assets/icons/chevron-down.png";
-import chevronUp from "@/assets/icons/chevron-up.png";
+import arrowLeft from "@/assets/icons/arrow-left.svg";
+import arrowRight from "@/assets/icons/arrow-right.svg";
+import chevronLeft from "@/assets/icons/chevron-left.svg";
+import chevronRight from "@/assets/icons/chevron-right.svg";
+import chevronDown from "@/assets/icons/chevron-down.svg";
+import chevronUp from "@/assets/icons/chevron-up.svg";
 
 // 基础图标
-import home from "@/assets/icons/home.png";
-import user from "@/assets/icons/user.png";
-import users from "@/assets/icons/users.png";
-import compass from "@/assets/icons/compass.png";
-import search from "@/assets/icons/search.png";
-import bell from "@/assets/icons/bell.png";
-import settings from "@/assets/icons/settings.png";
+import home from "@/assets/icons/home.svg";
+import user from "@/assets/icons/user.svg";
+import users from "@/assets/icons/users.svg";
+import compass from "@/assets/icons/compass.svg";
+import search from "@/assets/icons/search.svg";
+import bell from "@/assets/icons/bell.svg";
+import settings from "@/assets/icons/settings.svg";
 
 // 操作图标
-import check from "@/assets/icons/check.png";
-import x from "@/assets/icons/x.png";
-import upload from "@/assets/icons/upload.png";
-import heart from "@/assets/icons/heart.png";
-import star from "@/assets/icons/star.png";
-import eye from "@/assets/icons/eye.png";
-import share from "@/assets/icons/share.png";
+import check from "@/assets/icons/check.svg";
+import x from "@/assets/icons/x.svg";
+import upload from "@/assets/icons/upload.svg";
+import heart from "@/assets/icons/heart.svg";
+import star from "@/assets/icons/star.svg";
+import eye from "@/assets/icons/eye.svg";
+import share from "@/assets/icons/share.svg";
 
 // 时间和日期
-import calendar from "@/assets/icons/calendar.png";
-import clock from "@/assets/icons/clock.png";
+import calendar from "@/assets/icons/calendar.svg";
+import clock from "@/assets/icons/clock.svg";
 
 // 位置和地图
-import mapPin from "@/assets/icons/map-pin.png";
+import mapPin from "@/assets/icons/map-pin.svg";
 
 // 媒体和播放
-import video from "@/assets/icons/video.png";
-import play from "@/assets/icons/play.png";
-import playCircle from "@/assets/icons/play-circle.png";
+import video from "@/assets/icons/video.svg";
+import play from "@/assets/icons/play.svg";
+import playCircle from "@/assets/icons/play-circle.svg";
 
 // 通讯
-import phone from "@/assets/icons/phone.png";
-import mail from "@/assets/icons/mail.png";
-import messageCircle from "@/assets/icons/message-circle.png";
-import messageSquare from "@/assets/icons/message-square.png";
+import phone from "@/assets/icons/phone.svg";
+import mail from "@/assets/icons/mail.svg";
+import messageCircle from "@/assets/icons/message-circle.svg";
+import messageSquare from "@/assets/icons/message-square.svg";
 
 // 商业和工作
-import briefcase from "@/assets/icons/briefcase.png";
-import building from "@/assets/icons/building.png";
-import shoppingBag from "@/assets/icons/shopping-bag.png";
-import packageIcon from "@/assets/icons/package.png";
+import briefcase from "@/assets/icons/briefcase.svg";
+import building from "@/assets/icons/building.svg";
+import shoppingBag from "@/assets/icons/shopping-bag.svg";
+import packageIcon from "@/assets/icons/package.svg";
 
 // 教育
-import graduationCap from "@/assets/icons/graduation-cap.png";
-import bookOpen from "@/assets/icons/book-open.png";
-import school from "@/assets/icons/school.png";
+import graduationCap from "@/assets/icons/graduation-cap.svg";
+import bookOpen from "@/assets/icons/book-open.svg";
+import school from "@/assets/icons/school.svg";
 
 // 奖励和成就
-import award from "@/assets/icons/award.png";
-import trendingUp from "@/assets/icons/trending-up.png";
-import thumbsUp from "@/assets/icons/thumbs-up.png";
+import award from "@/assets/icons/award.svg";
+import trendingUp from "@/assets/icons/trending-up.svg";
+import thumbsUp from "@/assets/icons/thumbs-up.svg";
 
 // 其他
-import circle from "@/assets/icons/circle.png";
-import dot from "@/assets/icons/dot.png";
-import qrCode from "@/assets/icons/qr-code.png";
-import ticket from "@/assets/icons/ticket.png";
-import moreHorizontal from "@/assets/icons/more-horizontal.png";
-import gripVertical from "@/assets/icons/grip-vertical.png";
-import panelLeft from "@/assets/icons/panel-left.png";
-import helpCircle from "@/assets/icons/help-circle.png";
-import lock from "@/assets/icons/lock.png";
-import globe from "@/assets/icons/globe.png";
-import moon from "@/assets/icons/moon.png";
-import fileText from "@/assets/icons/file-text.png";
+import circle from "@/assets/icons/circle.svg";
+import dot from "@/assets/icons/dot.svg";
+import qrCode from "@/assets/icons/qr-code.svg";
+import ticket from "@/assets/icons/ticket.svg";
+import moreHorizontal from "@/assets/icons/more-horizontal.svg";
+import gripVertical from "@/assets/icons/grip-vertical.svg";
+import panelLeft from "@/assets/icons/panel-left.svg";
+import helpCircle from "@/assets/icons/help-circle.svg";
+import lock from "@/assets/icons/lock.svg";
+import globe from "@/assets/icons/globe.svg";
+import moon from "@/assets/icons/moon.svg";
+import fileText from "@/assets/icons/file-text.svg";
 
 // 导出所有图标
 export const icons = {

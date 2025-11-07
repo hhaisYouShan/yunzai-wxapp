@@ -95,7 +95,7 @@ const AlumniActivityHistory = () => {
             <Card 
               key={`${item.id}-${item.viewedAt}`}
               className="overflow-hidden cursor-pointer hover:shadow-md transition-all"
-              onClick={() => navigate(`/alumni/activity/${item.id}`)}
+              onClick={() => navigate(`/alumni/activity/${item.id}?from=history`)}
             >
               <div className="flex gap-3 p-3">
                 <div className="relative w-32 h-24 flex-shrink-0">

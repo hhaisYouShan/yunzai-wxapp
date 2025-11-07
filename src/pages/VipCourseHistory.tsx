@@ -84,7 +84,7 @@ const VipCourseHistory = () => {
             <Card 
               key={`${item.id}-${item.viewedAt}`}
               className="overflow-hidden cursor-pointer hover:shadow-md transition-all"
-              onClick={() => navigate(`/vip-course/${item.id}`)}
+              onClick={() => navigate(`/vip-course/${item.id}?from=history`)}
             >
               <div className="flex gap-3 p-3">
                 <div className="relative w-32 h-24 flex-shrink-0">

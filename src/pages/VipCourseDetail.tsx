@@ -8,6 +8,8 @@ import { useEffect } from "react";
 const VipCourseDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const searchParams = new URLSearchParams(window.location.search);
+  const fromHistory = searchParams.get('from') === 'history';
 
   // 模拟数据
   const vipCourse = {
@@ -69,21 +71,25 @@ const VipCourseDetail = () => {
       </div>
 
       {/* Poster */}
-      <div className="relative h-64">
+      <div className="relative w-full aspect-[3/4] max-w-2xl mx-auto">
         <img
           src={vipCourse.poster}
           alt={vipCourse.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-lg"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-        <Badge className="absolute top-4 left-4 bg-amber-500 text-white">
-          <Star className="w-3 h-3 mr-1" />
-          大咖课
-        </Badge>
-        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-          <h2 className="font-bold text-xl mb-2">{vipCourse.title}</h2>
-          <p className="text-sm opacity-90">{vipCourse.speaker}</p>
-        </div>
+        {!fromHistory && (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-lg" />
+            <Badge className="absolute top-4 left-4 bg-amber-500 text-white">
+              <Star className="w-3 h-3 mr-1" />
+              大咖课
+            </Badge>
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+              <h2 className="font-bold text-xl mb-2">{vipCourse.title}</h2>
+              <p className="text-sm opacity-90">{vipCourse.speaker}</p>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Info Cards */}
@@ -141,18 +147,20 @@ const VipCourseDetail = () => {
       </div>
 
       {/* Bottom Action */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 max-w-md mx-auto shadow-lg">
-        <div className="flex gap-2">
-          <Button 
-            className="flex-1 text-lg py-6 shadow-lg"
-            size="lg"
-            onClick={() => navigate(`/vip-course/${id}/register`)}
-          >
-            <Star className="w-5 h-5 mr-2" fill="currentColor" />
-            立即加入
-          </Button>
+      {!fromHistory && (
+        <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 max-w-md mx-auto shadow-lg">
+          <div className="flex gap-2">
+            <Button 
+              className="flex-1 text-lg py-6 shadow-lg"
+              size="lg"
+              onClick={() => navigate(`/vip-course/${id}/register`)}
+            >
+              <Star className="w-5 h-5 mr-2" fill="currentColor" />
+              立即加入
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, MapPin, Users, Clock } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const AlumniActivity = () => {
   const navigate = useNavigate();
@@ -109,6 +110,31 @@ const AlumniActivity = () => {
   };
 
   const activity = activities[activityId || "1"];
+
+  // 保存浏览历史
+  useEffect(() => {
+    if (activity) {
+      const historyItem = {
+        id: activity.id,
+        title: activity.title,
+        date: activity.date,
+        location: activity.location,
+        image: activity.image,
+        viewedAt: Date.now(),
+      };
+
+      const stored = localStorage.getItem('alumni-activity-history');
+      let history = stored ? JSON.parse(stored) : [];
+      
+      // 移除同ID的旧记录
+      history = history.filter((item: any) => item.id !== activity.id);
+      
+      // 添加新记录到开头，保留最近20条
+      history = [historyItem, ...history].slice(0, 20);
+      
+      localStorage.setItem('alumni-activity-history', JSON.stringify(history));
+    }
+  }, [activityId]);
 
   if (!activity) {
     return (

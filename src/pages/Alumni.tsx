@@ -4,7 +4,7 @@ import HeroHeader from "@/components/alumni/HeroHeader";
 import FeaturedActivityCard, { ActivityItem } from "@/components/alumni/FeaturedActivityCard";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Briefcase, GraduationCap, MapPin, Calendar, Users as UsersIcon } from "lucide-react";
+import { ChevronRight, Briefcase, GraduationCap, MapPin, Calendar, Users as UsersIcon, History } from "lucide-react";
 import type { AlumniItem } from "@/components/alumni/AlumniShowcase";
 
 interface RegionItem {
@@ -138,11 +138,22 @@ const Alumni = () => {
         <section className="px-4 mb-6 animate-fade-in">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-bold text-foreground">校友会活动</h2>
-            <Link to="/alumni/activities">
-              <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">
-                查看全部 <ChevronRight className="w-4 h-4 ml-1" />
+            <div className="flex items-center gap-2">
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => navigate('/alumni/activity/history')}
+                className="text-primary hover:text-primary/90"
+              >
+                <History className="w-4 h-4 mr-1" />
+                历史
               </Button>
-            </Link>
+              <Link to="/alumni/activities">
+                <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">
+                  查看全部 <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </Link>
+            </div>
           </div>
           <div className="space-y-4">
             {activities.slice(0, 2).map((activity) => (

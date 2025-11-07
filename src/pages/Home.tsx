@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlayCircle, BookOpen, Users, GraduationCap, ChevronRight, Calendar, Video, School, Briefcase, Star } from "lucide-react";
+import { PlayCircle, BookOpen, Users, GraduationCap, ChevronRight, Calendar, Video, School, Briefcase, Star, History } from "lucide-react";
 import { CourseCard } from "@/components/CourseCard";
 import logo from "@/assets/logo.png";
 import vipCoursePoster from "@/assets/vip-course-poster.jpg";
@@ -127,6 +127,21 @@ const Home = () => {
 
       {/* VIP Course Poster */}
       <div className="px-4 py-3">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <Star className="w-5 h-5 text-amber-500" fill="currentColor" />
+            <h2 className="text-lg font-bold text-foreground">大咖课</h2>
+          </div>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={() => navigate('/vip-course/history')}
+            className="text-primary hover:text-primary/90"
+          >
+            <History className="w-4 h-4 mr-1" />
+            历史
+          </Button>
+        </div>
         <Card 
           className="overflow-hidden hover:shadow-lg transition-all duration-300 relative group"
         >

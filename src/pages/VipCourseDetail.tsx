@@ -3,6 +3,7 @@ import { ArrowLeft, Calendar, MapPin, Clock, Users, Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useEffect } from "react";
 
 const VipCourseDetail = () => {
   const { id } = useParams();
@@ -27,6 +28,28 @@ const VipCourseDetail = () => {
     registered: 128,
     maxCapacity: 200,
   };
+
+  // 保存浏览历史
+  useEffect(() => {
+    const historyItem = {
+      id: vipCourse.id,
+      title: vipCourse.title,
+      speaker: vipCourse.speaker,
+      poster: vipCourse.poster,
+      viewedAt: Date.now(),
+    };
+
+    const stored = localStorage.getItem('vip-course-history');
+    let history = stored ? JSON.parse(stored) : [];
+    
+    // 移除同ID的旧记录
+    history = history.filter((item: any) => item.id !== vipCourse.id);
+    
+    // 添加新记录到开头，保留最近20条
+    history = [historyItem, ...history].slice(0, 20);
+    
+    localStorage.setItem('vip-course-history', JSON.stringify(history));
+  }, []);
 
   return (
     <div className="min-h-screen bg-background pb-20">

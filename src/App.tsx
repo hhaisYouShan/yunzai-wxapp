@@ -31,6 +31,8 @@ import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import VipCourseDetail from "./pages/VipCourseDetail";
 import VipCourseRegister from "./pages/VipCourseRegister";
+import VipCourseHistory from "./pages/VipCourseHistory";
+import AlumniActivityHistory from "./pages/AlumniActivityHistory";
 import ActivityParticipation from "./pages/ActivityParticipation";
 import TrainingPrograms from "./pages/TrainingPrograms";
 import LiveSchedule from "./pages/LiveSchedule";
@@ -74,6 +76,8 @@ const App = () => (
             <Route path="/live-schedule" element={<LiveSchedule />} />
             <Route path="/vip-course/:id" element={<VipCourseDetail />} />
             <Route path="/vip-course/:id/register" element={<VipCourseRegister />} />
+            <Route path="/vip-course/history" element={<VipCourseHistory />} />
+            <Route path="/alumni/activity/history" element={<AlumniActivityHistory />} />
             <Route path="/agreement" element={<Agreement />} />
             <Route path="/privacy" element={<Privacy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

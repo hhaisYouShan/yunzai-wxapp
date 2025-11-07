@@ -249,17 +249,11 @@ const Discover = () => {
         </div>
       </div>
 
-      {/* Content - Masonry Grid */}
-      <div className="px-4 py-4">
-        <div className="grid grid-cols-2 gap-3">
-          {newsData[activeTab as keyof typeof newsData].map((item, index) => (
-            <NewsCard 
-              key={item.id} 
-              news={item} 
-              isHot={item.views > 200}
-            />
-          ))}
-        </div>
+      {/* Content */}
+      <div className="px-4 py-4 space-y-4">
+        {newsData[activeTab as keyof typeof newsData].map((item) => (
+          <NewsCard key={item.id} news={item} />
+        ))}
       </div>
     </div>
   );

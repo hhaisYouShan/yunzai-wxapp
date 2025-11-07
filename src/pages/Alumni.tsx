@@ -4,19 +4,8 @@ import HeroHeader from "@/components/alumni/HeroHeader";
 import FeaturedActivityCard, { ActivityItem } from "@/components/alumni/FeaturedActivityCard";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ChevronRight, Briefcase, GraduationCap, MapPin, Calendar, Users as UsersIcon } from "lucide-react";
 import type { AlumniItem } from "@/components/alumni/AlumniShowcase";
-import briefcaseIcon from "@/assets/icons/briefcase.png";
-import graduationCapIcon from "@/assets/icons/graduation-cap.png";
-import mapPinIcon from "@/assets/icons/map-pin.png";
-import calendarIcon from "@/assets/icons/calendar.png";
-import usersIcon from "@/assets/icons/users.png";
-import chevronRightIcon from "@/assets/icons/chevron-right.png";
-import arrowLeftIcon from "@/assets/icons/arrow-left.png";
-import phoneIcon from "@/assets/icons/phone.png";
-import mailIcon from "@/assets/icons/mail.png";
-import awardIcon from "@/assets/icons/award.png";
-import buildingIcon from "@/assets/icons/building.png";
-import bookOpenIcon from "@/assets/icons/book-open.png";
 
 interface RegionItem {
   id: string;
@@ -27,11 +16,11 @@ interface RegionItem {
 const Alumni = () => {
   const navigate = useNavigate();
 
-  const regions = [
-    { id: "east", name: "华东" },
-    { id: "south", name: "华南" },
-    { id: "north", name: "华北" },
-    { id: "central", name: "华中" },
+  const regions: RegionItem[] = [
+    { id: "east", name: "华东", count: 156 },
+    { id: "south", name: "华南", count: 203 },
+    { id: "north", name: "华北", count: 178 },
+    { id: "central", name: "华中", count: 145 },
   ];
 
   const sampleAlumni: AlumniItem[] = [
@@ -87,83 +76,61 @@ const Alumni = () => {
         {/* Featured Activity */}
         <FeaturedActivityCard activity={activities[0]} onView={(id) => navigate(`/alumni/activity/${id}`)} />
 
-        {/* Regions - Icon Display */}
+        {/* Regions - 1 Row 4 Columns */}
         <section className="px-4 mb-6 animate-fade-in">
           <h2 className="font-bold text-foreground mb-3">分区校友会</h2>
           <div className="grid grid-cols-4 gap-3">
-            {regions.map((region) => {
-              return (
-                <Link key={region.id} to={`/alumni/${region.id}`}>
-                  <Card className="p-4 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/40">
-                    <div className="text-center">
-                      <h3 className="font-bold text-primary text-base">{region.name}</h3>
-                    </div>
-                  </Card>
-                </Link>
-              );
-            })}
+            {regions.map((region) => (
+              <Link key={region.id} to={`/alumni/${region.id}`}>
+                <Card className="p-4 hover:shadow-[var(--shadow-medium)] transition-all hover:scale-105 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20 hover:border-primary/40">
+                  <div className="text-center">
+                    <h3 className="font-bold text-primary text-lg mb-1">{region.name}</h3>
+                    <p className="text-sm text-muted-foreground">{region.count}人</p>
+                  </div>
+                </Card>
+              </Link>
+            ))}
           </div>
         </section>
 
-        {/* Alumni Showcase */}
+        {/* Alumni Preview */}
         <section className="px-4 mb-6 animate-fade-in">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="font-bold text-foreground text-lg">杰出校友</h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-bold text-foreground">部分校友展示</h2>
             <Link to="/alumni/members">
               <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">
-                查看全部 <img src={chevronRightIcon} alt="" className="w-4 h-4 ml-1 inline-block" />
+                查看全部 <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             </Link>
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {sampleAlumni.slice(0, 4).map((a) => (
-              <Card key={a.id} className="p-4 hover:shadow-lg transition-all duration-300 bg-card border border-border">
-                <div className="text-center">
-                  {/* Avatar with online indicator */}
-                  <div className="relative inline-block mb-3">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center border-2 border-primary/30">
-                      <span className="text-2xl font-bold text-primary">
-                        {a.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-2 border-card" />
+              <Card key={a.id} className="p-4 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/10 hover:shadow-[var(--shadow-medium)] transition-all">
+                <div className="text-center mb-3">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center mb-2">
+                    <span className="text-2xl font-bold text-primary">{a.name.charAt(0)}</span>
                   </div>
-
-                  {/* Name */}
-                  <h3 className="font-bold text-foreground text-base mb-1">{a.name}</h3>
-                  
-                  {/* Position */}
-                  <p className="text-sm text-muted-foreground mb-2">{a.position}</p>
-                  
-                  {/* Description */}
-                  <div className="space-y-1 mb-3 text-xs text-muted-foreground">
-                    <p className="flex items-center justify-center gap-1">
-                      <img src={briefcaseIcon} alt="" className="w-3 h-3" />
-                      <span className="truncate">{a.company}</span>
-                    </p>
-                    <p className="flex items-center justify-center gap-1">
-                      <img src={graduationCapIcon} alt="" className="w-3 h-3" />
-                      <span>{a.degree}</span>
-                    </p>
-                  </div>
-
-                  {/* Region Tag */}
-                  <div className="flex justify-center">
-                    <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                      <img src={mapPinIcon} alt="" className="w-3 h-3" />
-                      <span>{a.region}</span>
-                    </div>
-                  </div>
+                  <h3 className="font-bold text-foreground text-sm">{a.name}</h3>
+                </div>
+                <div className="space-y-1.5 text-xs text-muted-foreground">
+                  <p className="flex items-center gap-1.5">
+                    <GraduationCap className="w-3.5 h-3.5 flex-shrink-0 text-primary" />
+                    <span className="truncate">{a.degree}</span>
+                  </p>
+                  <p className="flex items-center gap-1.5">
+                    <Briefcase className="w-3.5 h-3.5 flex-shrink-0 text-secondary" />
+                    <span className="truncate">{a.company}</span>
+                  </p>
+                  <p className="flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 flex-shrink-0 text-primary" />
+                    <span>{a.region}</span>
+                  </p>
                 </div>
               </Card>
             ))}
           </div>
-
-          {/* Footer CTA */}
-          <div className="mt-4 p-4 rounded-lg bg-gradient-to-r from-primary/5 via-secondary/5 to-primary/5 border border-primary/10 text-center">
-            <p className="text-sm text-foreground font-medium mb-1">想了解更多校友信息？</p>
-            <p className="text-xs text-muted-foreground">加入校友会查看完整校友资料与联系方式</p>
+          <div className="mt-4 text-center">
+            <p className="text-sm text-muted-foreground">加入校友会查看完整校友信息</p>
           </div>
         </section>
 
@@ -173,7 +140,7 @@ const Alumni = () => {
             <h2 className="font-bold text-foreground">校友会活动</h2>
             <Link to="/alumni/activities">
               <Button variant="ghost" size="sm" className="text-primary hover:text-primary/90">
-                查看全部 <img src={chevronRightIcon} alt="" className="w-4 h-4 ml-1 inline-block" />
+                查看全部 <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             </Link>
           </div>
@@ -191,15 +158,15 @@ const Alumni = () => {
                     <h3 className="font-bold text-foreground mb-2 line-clamp-1">{activity.title}</h3>
                     <div className="space-y-1.5 text-xs text-muted-foreground mb-3">
                       <p className="flex items-center gap-1.5">
-                        <img src={calendarIcon} alt="" className="w-3.5 h-3.5" />
+                        <Calendar className="w-3.5 h-3.5 text-primary" />
                         <span>{activity.date}</span>
                       </p>
                       <p className="flex items-center gap-1.5">
-                        <img src={mapPinIcon} alt="" className="w-3.5 h-3.5" />
+                        <MapPin className="w-3.5 h-3.5 text-secondary" />
                         <span>{activity.location}</span>
                       </p>
                       <p className="flex items-center gap-1.5">
-                        <img src={usersIcon} alt="" className="w-3.5 h-3.5" />
+                        <UsersIcon className="w-3.5 h-3.5 text-primary" />
                         <span>{activity.participants}人参与</span>
                       </p>
                     </div>

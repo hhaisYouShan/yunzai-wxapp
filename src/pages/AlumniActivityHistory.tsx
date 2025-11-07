@@ -22,6 +22,36 @@ const AlumniActivityHistory = () => {
     if (stored) {
       const parsed = JSON.parse(stored);
       setHistory(parsed.sort((a: AlumniActivityHistoryItem, b: AlumniActivityHistoryItem) => b.viewedAt - a.viewedAt));
+    } else {
+      // 添加一些测试数据
+      const testData: AlumniActivityHistoryItem[] = [
+        {
+          id: 1,
+          title: "2024春季校友交流会",
+          date: "2024年3月20日",
+          location: "北京·国贸",
+          image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop",
+          viewedAt: Date.now() - 3600000, // 1小时前
+        },
+        {
+          id: 2,
+          title: "华南校友企业参访",
+          date: "2024年4月15日",
+          location: "深圳·南山",
+          image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=400&fit=crop",
+          viewedAt: Date.now() - 7200000, // 2小时前
+        },
+        {
+          id: 3,
+          title: "金融行业校友论坛",
+          date: "2024年5月10日",
+          location: "上海·陆家嘴",
+          image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=400&fit=crop",
+          viewedAt: Date.now() - 86400000, // 1天前
+        },
+      ];
+      localStorage.setItem('alumni-activity-history', JSON.stringify(testData));
+      setHistory(testData);
     }
   }, []);
 

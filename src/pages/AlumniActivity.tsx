@@ -152,29 +152,34 @@ const AlumniActivity = () => {
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header Image */}
-      <div className="relative h-48">
+      <div className="relative h-64">
         <img
           src={activity.image}
           alt={activity.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
         <Button
           variant="ghost"
           size="sm"
           onClick={() => navigate("/alumni")}
-          className="absolute top-4 left-4 text-primary-foreground bg-background/50 backdrop-blur-sm hover:bg-background/70"
+          className="absolute top-4 left-4 text-white bg-black/30 backdrop-blur-sm hover:bg-black/50"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           返回
         </Button>
+        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+          <h2 className="font-bold text-xl mb-2">{activity.title}</h2>
+          <p className="text-sm opacity-90 flex items-center gap-2">
+            <Calendar className="w-4 h-4" />
+            {activity.date}
+          </p>
+        </div>
       </div>
 
       {/* Activity Info */}
       <div className="px-4 -mt-6">
         <Card className="p-4 shadow-[var(--shadow-medium)] mb-6">
-          <h1 className="text-xl font-bold text-foreground mb-4">{activity.title}</h1>
-          
           <div className="space-y-3 mb-4">
             <div className="flex items-center gap-3 text-sm">
               <div className="flex items-center gap-2 text-muted-foreground">

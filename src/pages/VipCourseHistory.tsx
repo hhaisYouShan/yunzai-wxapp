@@ -21,6 +21,26 @@ const VipCourseHistory = () => {
     if (stored) {
       const parsed = JSON.parse(stored);
       setHistory(parsed.sort((a: VipCourseHistoryItem, b: VipCourseHistoryItem) => b.viewedAt - a.viewedAt));
+    } else {
+      // 添加一些测试数据
+      const testData: VipCourseHistoryItem[] = [
+        {
+          id: 1,
+          title: "企业家高峰论坛",
+          speaker: "商界大咖",
+          poster: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800",
+          viewedAt: Date.now() - 1800000, // 30分钟前
+        },
+        {
+          id: 2,
+          title: "数字化转型实践分享",
+          speaker: "科技创新专家",
+          poster: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800",
+          viewedAt: Date.now() - 5400000, // 1.5小时前
+        },
+      ];
+      localStorage.setItem('vip-course-history', JSON.stringify(testData));
+      setHistory(testData);
     }
   }, []);
 

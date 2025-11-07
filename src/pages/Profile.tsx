@@ -1,17 +1,21 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, ShoppingBag, Star, Ticket, Phone, MessageSquare, Settings, Calendar } from "lucide-react";
+import { ChevronRight, ShoppingBag, Star, Ticket, Phone, MessageSquare, Settings, Calendar, Edit2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import logo from "@/assets/logo.png";
+import { EditProfileDialog } from "@/components/EditProfileDialog";
 
 const Profile = () => {
   const { toast } = useToast();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -23,8 +27,24 @@ const Profile = () => {
       setUser(session?.user ?? null);
     });
 
+    // Load saved profile from localStorage
+    const savedName = localStorage.getItem("user_name");
+    const savedAvatar = localStorage.getItem("user_avatar");
+    if (savedName) setUserName(savedName);
+    if (savedAvatar) setUserAvatar(savedAvatar);
+
     return () => subscription.unsubscribe();
   }, []);
+
+  const handleSaveProfile = (name: string, avatar: string) => {
+    setUserName(name);
+    setUserAvatar(avatar);
+    localStorage.setItem("user_name", name);
+    localStorage.setItem("user_avatar", avatar);
+  };
+
+  const displayName = userName || user?.user_metadata?.name || "用户";
+  const displayAvatar = userAvatar || user?.user_metadata?.avatar_url;
 
   const handleWechatLogin = async () => {
     toast({
@@ -74,12 +94,20 @@ const Profile = () => {
         {user ? (
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Avatar className="w-14 h-14 border-2 border-primary-foreground">
-                <AvatarImage src={user.user_metadata?.avatar_url} />
-                <AvatarFallback>{user.user_metadata?.name?.[0] || user.email?.[0]}</AvatarFallback>
-              </Avatar>
+              <div className="relative">
+                <Avatar className="w-14 h-14 border-2 border-primary-foreground">
+                  <AvatarImage src={displayAvatar} />
+                  <AvatarFallback>{displayName[0]}</AvatarFallback>
+                </Avatar>
+                <button
+                  onClick={() => setIsEditDialogOpen(true)}
+                  className="absolute -bottom-1 -right-1 bg-primary-foreground text-primary rounded-full p-1.5 hover:bg-primary-foreground/90 transition-colors"
+                >
+                  <Edit2 className="w-3 h-3" />
+                </button>
+              </div>
               <div>
-                <h2 className="text-lg font-bold">{user.user_metadata?.name || "用户"}</h2>
+                <h2 className="text-lg font-bold">{displayName}</h2>
                 <p className="text-sm opacity-90">{user.email}</p>
               </div>
             </div>
@@ -211,6 +239,15 @@ const Profile = () => {
         <p>@Copyright2024</p>
         <p>深圳市国研时代教育科技有限公司.All rights reserved.</p>
       </div>
+
+      {/* Edit Profile Dialog */}
+      <EditProfileDialog
+        isOpen={isEditDialogOpen}
+        onClose={() => setIsEditDialogOpen(false)}
+        currentName={displayName}
+        currentAvatar={displayAvatar}
+        onSave={handleSaveProfile}
+      />
     </div>
   );
 };

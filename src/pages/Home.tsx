@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { PlayCircle, BookOpen, Users, GraduationCap, ChevronRight, Calendar, Video, School, Briefcase, Star } from "lucide-react";
 import { CourseCard } from "@/components/CourseCard";
 import logo from "@/assets/logo.png";
 import vipCoursePoster from "@/assets/vip-course-poster.jpg";
-import { icons } from "@/lib/icons";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ const Home = () => {
   ];
 
   const features = [
-    { icon: icons.schoolRed, label: "学校", to: "/school" },
-    { icon: icons.graduationCapRed, label: "研修班", to: "/training-programs" },
-    { icon: icons.bookOpenAccent, label: "专栏系列", to: "/discover" },
-    { icon: icons.usersAccent, label: "校友会", to: "/alumni" },
+    { icon: School, label: "学校", color: "text-primary", to: "/school" },
+    { icon: GraduationCap, label: "研修班", color: "text-primary", to: "/training-programs" },
+    { icon: BookOpen, label: "专栏系列", color: "text-accent", to: "/discover" },
+    { icon: Users, label: "校友会", color: "text-accent", to: "/alumni" },
   ];
 
   // 直播预告
@@ -118,7 +118,7 @@ const Home = () => {
               className="p-4 text-center hover:shadow-md transition-all duration-300 cursor-pointer hover:scale-105"
               onClick={() => navigate(feature.to)}
             >
-              <img src={feature.icon} alt={feature.label} className="w-8 h-8 mx-auto mb-2" />
+              <feature.icon className={`w-8 h-8 mx-auto mb-2 ${feature.color}`} />
               <p className="text-sm font-medium text-foreground">{feature.label}</p>
             </Card>
           ))}
@@ -138,7 +138,7 @@ const Home = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="absolute top-3 left-3 bg-amber-500 text-white px-3 py-1 rounded-full flex items-center gap-1 shadow-lg">
-              <img src={icons.star} alt="star" className="w-4 h-4" />
+              <Star className="w-4 h-4" fill="currentColor" />
               <span className="text-sm font-semibold">大咖课</span>
             </div>
             <div className="absolute bottom-4 left-0 right-0 px-4">
@@ -148,7 +148,7 @@ const Home = () => {
                   className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg"
                   onClick={() => navigate('/vip-course/1/register')}
                 >
-                  <img src={icons.briefcase} alt="briefcase" className="w-4 h-4 mr-2" />
+                  <Briefcase className="w-4 h-4 mr-2" />
                   立即加入
                 </Button>
                 <Button 
@@ -172,7 +172,7 @@ const Home = () => {
             onClick={() => navigate('/live-schedule')} 
             className="flex items-center text-sm text-muted-foreground"
           >
-            更多 <img src={icons.chevronRight} alt="chevron" className="w-4 h-4" />
+            更多 <ChevronRight className="w-4 h-4" />
           </button>
         </div>
         <Card 
@@ -186,11 +186,11 @@ const Home = () => {
               className="w-full h-full object-cover"
             />
             <div className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full flex items-center gap-1">
-              <img src={icons.calendar} alt="calendar" className="w-3 h-3" />
+              <Calendar className="w-3 h-3" />
               {livePreview.date} {livePreview.time}
             </div>
             <div className="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
-              <img src={icons.usersWhite} alt="users" className="w-3 h-3" />
+              <Users className="w-3 h-3" />
               {livePreview.viewers}人预约
             </div>
           </div>
@@ -209,7 +209,7 @@ const Home = () => {
             onClick={() => navigate('/discover')} 
             className="flex items-center text-sm text-muted-foreground"
           >
-            更多 <img src={icons.chevronRight} alt="chevron" className="w-4 h-4" />
+            更多 <ChevronRight className="w-4 h-4" />
           </button>
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -227,7 +227,7 @@ const Home = () => {
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                   <div className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center">
-                    <img src={icons.playCircle} alt="play" className="w-6 h-6" />
+                    <PlayCircle className="w-6 h-6 text-primary" />
                   </div>
                 </div>
                 <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-0.5 rounded">
@@ -239,7 +239,7 @@ const Home = () => {
                   {video.title}
                 </h3>
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
-                  <img src={icons.video} alt="video" className="w-3 h-3" />
+                  <Video className="w-3 h-3" />
                   {video.views}次观看
                 </p>
               </div>
@@ -256,7 +256,7 @@ const Home = () => {
             onClick={() => navigate('/hot-courses')} 
             className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            更多 <img src={icons.chevronRight} alt="chevron" className="w-4 h-4" />
+            更多 <ChevronRight className="w-4 h-4" />
           </button>
         </div>
         <div className="space-y-3">

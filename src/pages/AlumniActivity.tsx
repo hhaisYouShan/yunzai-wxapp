@@ -2,13 +2,15 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, MapPin, Users, Clock } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ImageViewer } from "@/components/ImageViewer";
 
 const AlumniActivity = () => {
   const navigate = useNavigate();
   const { activityId } = useParams();
   const searchParams = new URLSearchParams(window.location.search);
   const fromHistory = searchParams.get('from') === 'history';
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
 
   const activities: Record<string, any> = {
     "1": {
@@ -158,7 +160,8 @@ const AlumniActivity = () => {
         <img
           src={activity.image}
           alt={activity.title}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+          onClick={() => setIsViewerOpen(true)}
         />
         {!fromHistory && (
           <>
@@ -182,6 +185,14 @@ const AlumniActivity = () => {
           </>
         )}
       </div>
+
+      {/* Image Viewer */}
+      <ImageViewer
+        src={activity.image}
+        alt={activity.title}
+        isOpen={isViewerOpen}
+        onClose={() => setIsViewerOpen(false)}
+      />
 
       {/* Activity Info */}
       <div className="px-4 -mt-6">

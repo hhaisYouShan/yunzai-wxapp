@@ -3,13 +3,15 @@ import { ArrowLeft, Calendar, MapPin, Clock, Users, Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ImageViewer } from "@/components/ImageViewer";
 
 const VipCourseDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(window.location.search);
   const fromHistory = searchParams.get('from') === 'history';
+  const [isViewerOpen, setIsViewerOpen] = useState(false);
 
   // 模拟数据
   const vipCourse = {
@@ -75,7 +77,8 @@ const VipCourseDetail = () => {
         <img
           src={vipCourse.poster}
           alt={vipCourse.title}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+          onClick={() => setIsViewerOpen(true)}
         />
         {!fromHistory && (
           <>
@@ -91,6 +94,14 @@ const VipCourseDetail = () => {
           </>
         )}
       </div>
+
+      {/* Image Viewer */}
+      <ImageViewer
+        src={vipCourse.poster}
+        alt={vipCourse.title}
+        isOpen={isViewerOpen}
+        onClose={() => setIsViewerOpen(false)}
+      />
 
       {/* Info Cards */}
       <div className="px-4 py-4 space-y-4">

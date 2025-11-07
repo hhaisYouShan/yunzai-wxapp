@@ -18,22 +18,15 @@ const Profile = () => {
   const [userAvatar, setUserAvatar] = useState("");
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    // Load saved profile from localStorage
-    const savedName = localStorage.getItem("user_name");
-    const savedAvatar = localStorage.getItem("user_avatar");
-    if (savedName) setUserName(savedName);
-    if (savedAvatar) setUserAvatar(savedAvatar);
-
-    return () => subscription.unsubscribe();
+    // Load saved profile from localStorage or use defaults
+    const savedName = localStorage.getItem("user_name") || "张三";
+    const savedAvatar = localStorage.getItem("user_avatar") || "";
+    setUserName(savedName);
+    setUserAvatar(savedAvatar);
+    
+    // Create a mock user object for display purposes
+    setUser({ email: "user@example.com" } as any);
+    setLoading(false);
   }, []);
 
   const handleSaveProfile = (name: string, avatar: string) => {
@@ -43,8 +36,8 @@ const Profile = () => {
     localStorage.setItem("user_avatar", avatar);
   };
 
-  const displayName = userName || user?.user_metadata?.name || "用户";
-  const displayAvatar = userAvatar || user?.user_metadata?.avatar_url;
+  const displayName = userName || "张三";
+  const displayAvatar = userAvatar;
 
   const handleWechatLogin = async () => {
     toast({
@@ -91,71 +84,35 @@ const Profile = () => {
           <h1 className="text-lg font-bold">国研在线</h1>
         </div>
         
-        {user ? (
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <Avatar className="w-14 h-14 border-2 border-primary-foreground">
-                  <AvatarImage src={displayAvatar} />
-                  <AvatarFallback>{displayName[0]}</AvatarFallback>
-                </Avatar>
-                <button
-                  onClick={() => setIsEditDialogOpen(true)}
-                  className="absolute -bottom-1 -right-1 bg-primary-foreground text-primary rounded-full p-1.5 hover:bg-primary-foreground/90 transition-colors"
-                >
-                  <Edit2 className="w-3 h-3" />
-                </button>
-              </div>
-              <div>
-                <h2 className="text-lg font-bold">{displayName}</h2>
-                <p className="text-sm opacity-90">{user.email}</p>
-              </div>
-            </div>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={handleLogout}
-              className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
-            >
-              退出
-            </Button>
-          </div>
-        ) : (
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <Avatar className="w-14 h-14 border-2 border-primary-foreground bg-primary-foreground/20">
-                <AvatarFallback className="text-primary-foreground text-xl">👋</AvatarFallback>
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <Avatar className="w-14 h-14 border-2 border-primary-foreground">
+                <AvatarImage src={displayAvatar} />
+                <AvatarFallback>{displayName[0]}</AvatarFallback>
               </Avatar>
-              <div>
-                <h2 className="text-lg font-bold">您好，欢迎来到国研在线</h2>
-                <p className="text-sm opacity-90">登录享受更多服务</p>
-              </div>
+              <button
+                onClick={() => setIsEditDialogOpen(true)}
+                className="absolute -bottom-1 -right-1 bg-primary-foreground text-primary rounded-full p-1.5 hover:bg-primary-foreground/90 transition-colors"
+              >
+                <Edit2 className="w-3 h-3" />
+              </button>
+            </div>
+            <div>
+              <h2 className="text-lg font-bold">{displayName}</h2>
+              <p className="text-sm opacity-90">{user?.email || "user@example.com"}</p>
             </div>
           </div>
-        )}
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={handleLogout}
+            className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+          >
+            退出
+          </Button>
+        </div>
 
-        {/* WeChat Login Button */}
-        {!user && (
-          <div className="mt-6">
-            <Button 
-              onClick={handleWechatLogin}
-              className="w-full bg-white text-primary hover:bg-white/90 font-medium"
-              size="lg"
-            >
-              <span className="mr-2">💬</span>
-              微信快捷登录
-            </Button>
-            <Link to="/auth">
-              <Button 
-                variant="ghost" 
-                className="w-full mt-2 text-primary-foreground hover:bg-primary-foreground/10"
-                size="sm"
-              >
-                其他登录方式
-              </Button>
-            </Link>
-          </div>
-        )}
       </div>
 
       {/* Quick Actions */}

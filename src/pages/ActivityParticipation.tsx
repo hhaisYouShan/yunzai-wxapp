@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, MapPin, Clock, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
@@ -25,11 +24,55 @@ interface Activity {
   checked_in_at?: string | null;
 }
 
+// 模拟活动数据
+const mockActivities: Activity[] = [
+  {
+    id: "1",
+    title: "产品设计工作坊",
+    description: "探索最新的产品设计理念和方法，与行业专家面对面交流，提升设计思维能力。",
+    location: "北京市朝阳区望京SOHO T3座 12层",
+    activity_date: "2024-12-20",
+    start_time: "14:00:00",
+    end_time: "17:00:00",
+    image_url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=60",
+    status: "active",
+    participation_status: "pending",
+    registered_at: "2024-12-15T10:30:00",
+    checked_in_at: null,
+  },
+  {
+    id: "2",
+    title: "技术分享会：AI应用实践",
+    description: "深入了解人工智能在实际项目中的应用，分享最佳实践和踩坑经验。",
+    location: "上海市浦东新区陆家嘴环路1000号",
+    activity_date: "2024-12-18",
+    start_time: "19:00:00",
+    end_time: "21:00:00",
+    image_url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=60",
+    status: "active",
+    participation_status: "checked_in",
+    registered_at: "2024-12-10T15:20:00",
+    checked_in_at: "2024-12-18T18:45:00",
+  },
+  {
+    id: "3",
+    title: "创业者沙龙",
+    description: "汇聚创业精英，分享创业心得，探讨商业模式，寻找合作机会。",
+    location: "深圳市南山区科技园南区深圳湾创业广场",
+    activity_date: "2024-12-10",
+    start_time: "15:30:00",
+    end_time: "18:00:00",
+    image_url: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&auto=format&fit=crop&q=60",
+    status: "completed",
+    participation_status: "completed",
+    registered_at: "2024-12-05T09:15:00",
+    checked_in_at: "2024-12-10T15:20:00",
+  },
+];
+
 const ActivityParticipation = () => {
   const { toast } = useToast();
-  const [activities, setActivities] = useState<Activity[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<any>(null);
+  const [activities] = useState<Activity[]>(mockActivities);
   const [checkInDialog, setCheckInDialog] = useState<{
     open: boolean;
     activityId: string;
@@ -39,75 +82,6 @@ const ActivityParticipation = () => {
     activityId: "",
     activityTitle: "",
   });
-
-  useEffect(() => {
-    const fetchUserAndActivities = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setUser(session?.user ?? null);
-
-      if (session?.user) {
-        await fetchActivities(session.user.id);
-      } else {
-        setLoading(false);
-      }
-    };
-
-    fetchUserAndActivities();
-  }, []);
-
-  const fetchActivities = async (userId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from("activity_participations")
-        .select(`
-          id,
-          status,
-          registered_at,
-          checked_in_at,
-          activity_id,
-          offline_activities (
-            id,
-            title,
-            description,
-            location,
-            activity_date,
-            start_time,
-            end_time,
-            image_url,
-            status
-          )
-        `)
-        .eq("user_id", userId)
-        .order("registered_at", { ascending: false });
-
-      if (error) throw error;
-
-      const formattedActivities = data?.map((item: any) => ({
-        id: item.offline_activities.id,
-        title: item.offline_activities.title,
-        description: item.offline_activities.description,
-        location: item.offline_activities.location,
-        activity_date: item.offline_activities.activity_date,
-        start_time: item.offline_activities.start_time,
-        end_time: item.offline_activities.end_time,
-        image_url: item.offline_activities.image_url,
-        status: item.offline_activities.status,
-        participation_status: item.status,
-        registered_at: item.registered_at,
-        checked_in_at: item.checked_in_at,
-      })) || [];
-
-      setActivities(formattedActivities);
-    } catch (error: any) {
-      toast({
-        title: "获取失败",
-        description: error.message,
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const getStatusBadge = (status: "pending" | "checked_in" | "completed") => {
     const statusConfig = {
@@ -162,46 +136,8 @@ const ActivityParticipation = () => {
 
       {/* Content */}
       <div className="px-4 py-6">
-        {!user ? (
-          <Card className="p-8 text-center border-2 border-dashed">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <Sparkles className="h-8 w-8 text-primary" />
-            </div>
-            <p className="text-foreground font-medium mb-2">探索精彩活动</p>
-            <p className="text-muted-foreground text-sm mb-4">登录后查看您的活动记录</p>
-            <Link to="/auth">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">立即登录</Button>
-            </Link>
-          </Card>
-        ) : loading ? (
-          <div className="space-y-4">
-            {[1, 2, 3].map((i) => (
-              <Card key={i} className="p-6 border-0 shadow-md">
-                <div className="animate-pulse space-y-4">
-                  <div className="h-5 bg-muted rounded w-3/4" />
-                  <div className="h-4 bg-muted rounded w-1/2" />
-                  <div className="h-4 bg-muted rounded w-full" />
-                  <div className="h-4 bg-muted rounded w-2/3" />
-                </div>
-              </Card>
-            ))}
-          </div>
-        ) : activities.length === 0 ? (
-          <Card className="p-12 text-center border-2 border-dashed">
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-muted/50">
-              <Sparkles className="h-10 w-10 text-muted-foreground" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">暂无活动记录</h3>
-            <p className="text-muted-foreground text-sm mb-6">
-              快去探索并报名参加精彩的线下活动吧！
-            </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
-              浏览活动
-            </Button>
-          </Card>
-        ) : (
-          <div className="space-y-4">
-            {activities.map((activity) => (
+        <div className="space-y-4">
+          {activities.map((activity) => (
               <Card key={activity.id} className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300">
                 {activity.image_url && (
                   <div className="relative h-48 bg-gradient-to-br from-primary/10 to-primary/5">
@@ -302,8 +238,7 @@ const ActivityParticipation = () => {
                 </div>
               </Card>
             ))}
-          </div>
-        )}
+        </div>
       </div>
 
       <CheckInDialog
